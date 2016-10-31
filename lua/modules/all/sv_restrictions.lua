@@ -70,3 +70,5 @@ concommand.Add("restrict_wep", function()
 		ply:ChatPrint("Weapon restrictions have now been toggled to "..(tostring(rest.wep)))
 	end
 end)
+
+rest.wep = true
