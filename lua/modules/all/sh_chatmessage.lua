@@ -65,7 +65,13 @@ else
 			table.insert(textT, "{DEAD} ")
 		end
 		
-		table.insert(textT, ply)
+		if ply then
+			table.insert(textT, ply)
+		else
+			table.insert(textT, Color(0, 220, 255))
+			table.insert(textT, "Console")
+		end
+		
 		table.insert(textT, Color(255, 255, 255))
 		table.insert(textT, ": ")
 		
@@ -83,8 +89,6 @@ else
 				table.insert(textT, " ")
 			end
 		end
-		
-		--PrintTable(unpack(extra))
 		
 		chat.AddText(unpack(textT))
 		

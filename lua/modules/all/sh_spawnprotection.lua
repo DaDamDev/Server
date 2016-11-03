@@ -39,7 +39,7 @@ else
 				cam.End3D()
 			end)
 			
-			timer.Simple(god_time,function ()
+			timer.Simple(god_time,function()
 				hook.Remove("HUDPaint","dadam_spawnprotection_"..key)
 			end)
 		end

@@ -4,7 +4,9 @@ if SERVER then
 	local time = {}
 	
 	hook.Add("KeyPress", "dadam_afktimer", function(ply, key)
-		time[ply] = 0
+		if not ply:IsBot() then
+			time[ply] = 0
+		end
 	end)
 	
 	timer.Create("dadam_afktimer", 1, 0, function()
@@ -13,19 +15,9 @@ if SERVER then
 			
 			ply:SetNWInt("dadam_afktimer", time[ply])
 		end
-		
-		--[[net.Start("dadam_afktimer")
-		net.WriteTable(time)
-		net.Broadcast()]]--
 	end)
 else
 	local time = {}
-	--[[local meta = FindMetaTable("Player")
-	if not meta then return end
-	
-	function meta:GetAfkTime()
-		return time[self]
-	end]]--
 	
 	surface.CreateFont("dadam_afktimer_font", {
 		font = "Trebuchet24",
@@ -63,9 +55,8 @@ else
 			if table.Count(time) > 0 then
 				for ply, t in pairs(time) do
 					if table.HasValue(player.GetAll(), ply) then
-						if ply != LocalPlayer() && time[ply] > 60 then
-							local plyp = ply:GetPos()
-							--local dist = math.sqrt(math.Distance(lpp.x, lpp.y, plyp.x, plyp.y)^2+math.abs(lpp.z - lpp.z)^2)
+						if ply != LocalPlayer() and time[ply] > 60 then
+							local plyp = ply:GetPos())
 							local dist = math.sqrt((lpp.x - (plyp.x))^2 + (lpp.y - (plyp.y))^2 + (lpp.z - (plyp.z))^2)
 							local color = ColorAlpha(Color(255, 0, 0), (1000-dist))
 							
@@ -76,8 +67,4 @@ else
 			end
 		end)
 	end)
-	
-	--[[net.Receive("dadam_afktimer", function()
-		time = net.ReadTable()
-	end)]]--
 end
