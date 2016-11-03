@@ -176,13 +176,13 @@ else
 	end)
 end
 
-local cmd_popup_sim = ulx.command("Fun", "ulx popup", popup_sim, "!popup")
-cmd_popup_sim:addParam{type = ULib.cmds.PlayersArg}
-cmd_popup_sim:addParam{type = ULib.cmds.NumArg}
-cmd_popup_sim:defaultAccess(ULib.ACCESS_ADMIN)
-cmd_popup_sim:help("Gives your victem(s) annoying popup-adds!")
+local cmd = ulx.command("Fun", "ulx popup", popup_sim, "!popup")
+cmd:addParam{type = ULib.cmds.PlayersArg}
+cmd:addParam{type = ULib.cmds.NumArg}
+cmd:defaultAccess(ULib.ACCESS_ADMIN)
+cmd:help("Gives your victem(s) annoying popup-adds!")
 
-local cmd_popup_sim = ulx.command("Fun", "ulx unpopup", popup_sim_remove, "!unpopup")
-cmd_popup_sim:addParam{type = ULib.cmds.PlayersArg}
-cmd_popup_sim:defaultAccess(ULib.ACCESS_ADMIN)
-cmd_popup_sim:help("Removes the annoying popup-adds from your victem(s)!")
+local cmd2 = ulx.command("Fun", "ulx unpopup", popup_sim_remove, "!unpopup")
+cmd2:addParam{type = ULib.cmds.PlayersArg}
+cmd2:defaultAccess(ULib.ACCESS_ADMIN)
+cmd2:help("Removes the annoying popup-adds from your victem(s)!")

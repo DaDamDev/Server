@@ -78,7 +78,7 @@ hook.Add("PlayerSpawn", "dadam_lightning", function(plyS)
 	end
 end)
 
-local cmd_ClearDecals = ulx.command("Fun", "ulx lightning", Lightning, "!spark")
-cmd_ClearDecals:addParam{type = ULib.cmds.PlayersArg}
-cmd_ClearDecals:defaultAccess(ULib.ACCESS_ADMIN)
-cmd_ClearDecals:help("Strikes lightning on your poor victem.")
+local cmd = ulx.command("Fun", "ulx lightning", Lightning, "!spark")
+cmd:addParam{type = ULib.cmds.PlayersArg}
+cmd:defaultAccess(ULib.ACCESS_ADMIN)
+cmd:help("Strikes lightning on your poor victem.")

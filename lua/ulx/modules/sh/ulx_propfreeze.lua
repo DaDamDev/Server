@@ -21,7 +21,7 @@ local function PropFreeze(calling_ply, target_plys)
 	ulx.fancyLogAdmin(calling_ply, "#A has frozen the props off #T!", target_plys)
 end
 
-local cmd_ClearDecals = ulx.command("Utility", "ulx freezeprops", PropFreeze, "!freezeprops")
-cmd_ClearDecals:addParam{type = ULib.cmds.PlayersArg}
-cmd_ClearDecals:defaultAccess(ULib.ACCESS_ADMIN)
-cmd_ClearDecals:help("Freezes props of chosen player(s).")
+local cmd = ulx.command("Utility", "ulx freezeprops", PropFreeze, "!freezeprops")
+cmd:addParam{type = ULib.cmds.PlayersArg}
+cmd:defaultAccess(ULib.ACCESS_ADMIN)
+cmd:help("Freezes props of chosen player(s).")

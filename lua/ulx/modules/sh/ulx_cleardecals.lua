@@ -5,6 +5,6 @@ local function ClearDecals(ply)
 	ulx.fancyLogAdmin(ply, "#A has cleared all the decals.")
 end
 
-local cmd_ClearDecals = ulx.command("Utility", "ulx cleardecals", ClearDecals, "!cleardecals")
-cmd_ClearDecals:defaultAccess(ULib.ACCESS_ADMIN)
-cmd_ClearDecals:help("Clears decals.")
+local cmd = ulx.command("Utility", "ulx cleardecals", ClearDecals, "!cleardecals")
+cmd:defaultAccess(ULib.ACCESS_ADMIN)
+cmd:help("Clears decals.")
