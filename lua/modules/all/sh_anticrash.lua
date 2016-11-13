@@ -53,9 +53,9 @@
 		else
 			laggInt = math.Clamp(laggInt-0.01, 0, 1)
 			
-			--[[if laggInt != 0 then
-				FindByName("dadamrival"):ChatPrint("DEBUG: "..laggInt)
-			end]]--
+			--if laggInt != 0 then
+			--	FindByName("dadamrival"):ChatPrint("DEBUG: "..laggInt)
+			--end
 		end
 		
 		prev_time = cur_time
@@ -66,4 +66,4 @@ else
 		
 		chat.AddText(Color(100, 100, 255), "Lag detected! All props ", Color(255, 255, 255), "["..props.."]", Color(100, 100, 255), " have been frozen.")
 	end)
-end]]--
+end]]

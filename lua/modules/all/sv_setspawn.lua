@@ -25,10 +25,10 @@ hook.Add("PlayerSpawn", "dadam_setspawn", function(ply)
 	end
 end)
 
-hook.Add("PlayerSay", "dadam_title", function(ply, text, public)
+hook.Add("PlayerSay", "dadam_setspawn", function(ply, text, public)
 	if string.sub(text, 1, 9) == "!setspawn" then
 		SetSpawn(ply)
-	elseif string.sub(text, 1, 11) == "!resetspawn"
+	elseif string.sub(text, 1, 11) == "!resetspawn" then
 		ResetSpawn(ply)
 	end
 end)
