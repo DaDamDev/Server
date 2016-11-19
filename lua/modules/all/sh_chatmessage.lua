@@ -66,7 +66,8 @@ else
 		end
 		
 		if ply then
-			table.insert(textT, ply)
+			table.insert(textT, team.GetColor(ply:Team()))
+			table.insert(textT, ply:Nick())
 		else
 			table.insert(textT, Color(0, 220, 255))
 			table.insert(textT, "Console")
@@ -77,7 +78,8 @@ else
 		
 		for i, t in pairs(string.Explode(" ", txt)) do
 			if FindByName(t) then
-				table.insert(textT, FindByName(t))
+				table.insert(textT, team.GetColor(FindByName(t):Team()))
+				table.insert(textT, FindByName(t):Nick())
 				table.insert(textT, " ")
 				
 				if FindByName(t) == LocalPlayer() then
