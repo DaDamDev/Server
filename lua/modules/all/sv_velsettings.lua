@@ -1,7 +1,5 @@
 local tbl = physenv.GetPerformanceSettings()
 tbl.MaxAngularVelocity = 30000
-physenv.SetPerformanceSettings(tbl)
+tbl.MaxVelocity = 20000
 
-local tbl2 = physenv.GetPerformanceSettings()
-tbl2.MaxVelocity = 20000
-physenv.SetPerformanceSettings(tbl2)
+physenv.SetPerformanceSettings(tbl)
