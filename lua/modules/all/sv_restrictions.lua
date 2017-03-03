@@ -1,7 +1,7 @@
 local weapons = {} --Allow
-weapons["Regular"] = {"weapon_physgun","gmod_tool","weapon_pistol","weapon_physcannon","weapon_crowbar","weapon_stunstick","weapon_crossbow","weapon_357","weapon_357","gmod_camera","weapon_fists","none","laserpointer","remotecontroller","torch"}
-weapons["Player"] = {"weapon_physgun","gmod_tool","gmod_camera","weapon_fists","none","laserpointer","remotecontroller","weapon_crowbar","weapon_physcannon","weapon_pistol","torch"}
-weapons["Guest"] = {"weapon_physgun","gmod_tool","gmod_camera","weapon_fists","none","laserpointer","remotecontroller","torch","weapon_crowbar"}
+weapons["Regular"] = {"weapon_physgun","gmod_tool","weapon_physcannon","weapon_crowbar","weapon_stunstick","weapon_pistol","weapon_357","gmod_camera","weapon_fists","none","laserpointer","remotecontroller","torch"}
+weapons["Player"] = {"weapon_physgun","gmod_tool","weapon_physcannon","gmod_camera","weapon_fists","none","laserpointer","remotecontroller","weapon_crowbar","weapon_physcannon","weapon_pistol","torch"}
+weapons["Guest"] = {"weapon_physgun","gmod_tool","gmod_camera","none","laserpointer","remotecontroller"}
 weapons["FUCKBOI"] = {"none"}
 
 local sents = {} --Restrict
