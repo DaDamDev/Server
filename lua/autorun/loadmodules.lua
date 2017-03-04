@@ -1,4 +1,3 @@
--- TODO: Improve me.
 local base = "modules/"
 local _, folders = file.Find(base .. "*", "LUA")
 
@@ -9,10 +8,8 @@ for _, folder in pairs(folders) do
 		local pre = file:sub(1, 2)
 		local fullPath = base .. folder .. "/" .. file
 
-		if pre == "sv" then
-			if SERVER then
-				include(fullPath)
-			end
+		if pre == "sv" and SERVER then
+			include(fullPath)
 		elseif pre == "cl" then
 			AddCSLuaFile(fullPath)
 			if CLIENT then
