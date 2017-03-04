@@ -2,7 +2,7 @@ if SERVER then
 	util.AddNetworkString("dadam_chatmessage_join")
 	util.AddNetworkString("dadam_chatmessage_leave")
 	
-	--join and disconnect
+	-- join and disconnect
 	hook.Add("PlayerInitialSpawn", "dadam_chatmessage_join", function(ply)
 		local plys = {}
 		
@@ -25,7 +25,7 @@ if SERVER then
 		net.Broadcast()
 	end)
 else
-	--join and disconnect
+	-- Join and disconnect
 	net.Receive("dadam_chatmessage_join", function()
 		local ply = net.ReadEntity()
 		
@@ -42,7 +42,7 @@ else
 		chat.AddText(color, ply, Color(255, 255, 255), " ["..steamid.."]", Color(100, 100, 255), " Has left.")
 	end)
 	
-	--colored names
+	-- Colored names
 	local function FindByName(name)
 		local pls = player.GetAll()
 		for k, v in pairs(pls) do

@@ -8,7 +8,7 @@ local function changeMat(org, rep, s)
    
     m:SetMatrix("$basetexturetransform", matrx)
    
-    -- reflection
+    -- Reflection
     m:SetUndefined("$envmap")
     m:SetUndefined("$envmapmask")
     m:SetUndefined("$envmapframe")

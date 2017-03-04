@@ -17,6 +17,5 @@ local list = {
 }
 
 for name, id in pairs(list) do
-	--print(id)
 	resource.AddWorkshop(""..id)
 end

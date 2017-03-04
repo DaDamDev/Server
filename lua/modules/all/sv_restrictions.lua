@@ -1,10 +1,10 @@
-local weapons = {} --Allow
+local weapons = {} -- Allow
 weapons["Regular"] = {"weapon_physgun","gmod_tool","weapon_physcannon","weapon_crowbar","weapon_stunstick","weapon_pistol","weapon_357","gmod_camera","weapon_fists","none","laserpointer","remotecontroller","torch"}
 weapons["Player"] = {"weapon_physgun","gmod_tool","weapon_physcannon","gmod_camera","weapon_fists","none","laserpointer","remotecontroller","weapon_crowbar","weapon_physcannon","weapon_pistol","torch"}
 weapons["Guest"] = {"weapon_physgun","gmod_tool","gmod_camera","none","laserpointer","remotecontroller"}
 weapons["FUCKBOI"] = {"none"}
 
-local sents = {} --Restrict
+local sents = {} -- Restrict
 sents["Regular"] = {"sent_ball", "bt_fred"}
 sents["Player"] = {"sent_ball", "bt_fred"}
 sents["Guest"] = {"mediaplayer_tv", "../spawnicons/models/props/cs_office/tv_plasma", "../spawnicons/models/hunter/plates/plate5x8", "sent_ball", "bt_fred"}

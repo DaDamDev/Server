@@ -28,7 +28,7 @@ hook.Add("ULibLocalPlayerReady", "dadam_hud", function(plyrdy)
 		--draw.RoundedBox(5, -5, h - 195, 300, 200, Color(200, 200, 200, 150))
 		--print(lp:GetActiveWeapon():IsValid())
 		
-		----------ammo----------
+		-- Ammo
 		if AmmoP(lp) > -1 or (ammoP ~= 0 and AmmoP(lp) == -1) then
 			if AmmoP(lp) > -1 and ammoP ~= 1 then
 				ammoP = math.Clamp(ammoP + 0.2, 0, 1)
@@ -51,7 +51,7 @@ hook.Add("ULibLocalPlayerReady", "dadam_hud", function(plyrdy)
 			draw.DrawText(AmmoP(lp).."/"..ammoT, "dadam_hud_font", 155, h-15 - 40*ammoP, Color(220, 220, 220, 230*ammoP), TEXT_ALIGN_CENTER)
 		end
 		
-		----------armor----------
+		-- Armor
 		if lp:Armor() > 0 or (armorP ~= 0 and lp:Armor() == 0) then
 			if lp:Armor() > 0 and armorP ~= 1 then
 				armorP = math.Clamp(armorP + 0.2, 0, 1)
@@ -64,7 +64,7 @@ hook.Add("ULibLocalPlayerReady", "dadam_hud", function(plyrdy)
 			draw.DrawText(lp:Armor(), "dadam_hud_font", 155, h-15 - 40*(armorP+ammoP), Color(220, 220, 220, 230*armorP), TEXT_ALIGN_CENTER)
 		end
 		
-		----------hp----------
+		-- HP
 		draw.RoundedBox(1, 30, h-60 - 40*(armorP+ammoP), 250, 30, Color(70, 70, 70, 150))
 		draw.RoundedBox(1, 33, h-57 - 40*(armorP+ammoP), math.Clamp(244 * (lp:Health()/lp:GetMaxHealth()), 0, 244), 24, Color(200, 70, 30, 150))
 		draw.DrawText(lp:Health(), "dadam_hud_font", 155, h-55 - 40*(armorP+ammoP), Color(220, 220, 220, 230), TEXT_ALIGN_CENTER)
