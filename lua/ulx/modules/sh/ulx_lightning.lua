@@ -71,7 +71,7 @@ end
 
 hook.Add("PlayerSpawn", "dadam_lightning", function(plyS)
 	for ply, ent in pairs(data) do
-		if ply == plyS && ent then
+		if ply == plyS and ent then
 			ent:Remove()
 			data[ply] = nil
 		end

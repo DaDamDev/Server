@@ -29,8 +29,8 @@ hook.Add("ULibLocalPlayerReady", "dadam_hud", function(plyrdy)
 		--print(lp:GetActiveWeapon():IsValid())
 		
 		----------ammo----------
-		if AmmoP(lp) > -1 || (ammoP != 0 && AmmoP(lp) == -1) then
-			if AmmoP(lp) > -1 && ammoP != 1 then
+		if AmmoP(lp) > -1 or (ammoP ~= 0 and AmmoP(lp) == -1) then
+			if AmmoP(lp) > -1 and ammoP ~= 1 then
 				ammoP = math.Clamp(ammoP + 0.2, 0, 1)
 			elseif AmmoP(lp) == -1 then
 				ammoP = math.Clamp(ammoP - 0.2, 0, 1)
@@ -52,8 +52,8 @@ hook.Add("ULibLocalPlayerReady", "dadam_hud", function(plyrdy)
 		end
 		
 		----------armor----------
-		if lp:Armor() > 0 || (armorP != 0 && lp:Armor() == 0) then
-			if lp:Armor() > 0 && armorP != 1 then
+		if lp:Armor() > 0 or (armorP ~= 0 and lp:Armor() == 0) then
+			if lp:Armor() > 0 and armorP ~= 1 then
 				armorP = math.Clamp(armorP + 0.2, 0, 1)
 			elseif lp:Armor() <= 0 then
 				armorP = math.Clamp(armorP - 0.2, 0, 1)

@@ -133,7 +133,7 @@ else
 			if popupCount < 20 then
 				--done = done + 1
 				
-				if (done < amount or amount == 0) and amount != -1 then
+				if (done < amount or amount == 0) and amount ~= -1 then
 					local randomPopup = table.Random(popupTypes)
 					
 					popupCreate(randomPopup.txt1, randomPopup.txt2, randomPopup.but, randomPopup.img)
@@ -141,9 +141,9 @@ else
 			end
 		end
 		
-		if (done < amount or amount == 0) and amount != -1 and popupCount < 20 then
+		if (done < amount or amount == 0) and amount ~= -1 and popupCount < 20 then
 			timer.Simple(math.random(0, 100)/100, function()
-				if amount != -1 then
+				if amount ~= -1 then
 					local randomPopup = table.Random(popupTypes)
 					
 					popupCreate(randomPopup.txt1, randomPopup.txt2, randomPopup.but, randomPopup.img)

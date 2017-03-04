@@ -32,7 +32,7 @@
 				
 				--FindByName("dadamrival"):ChatPrint("DEBUG: "..laggInt)
 				
-				if laggInt == 1 && not reset then
+				if laggInt == 1 and not reset then
 					FreezeDemProps()
 					
 					net.Start("dadam_antilag")
@@ -53,7 +53,7 @@
 		else
 			laggInt = math.Clamp(laggInt-0.01, 0, 1)
 			
-			--if laggInt != 0 then
+			--if laggInt ~= 0 then
 			--	FindByName("dadamrival"):ChatPrint("DEBUG: "..laggInt)
 			--end
 		end

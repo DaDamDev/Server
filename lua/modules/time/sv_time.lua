@@ -34,7 +34,7 @@ function updateAll()
 	local players = player.GetAll()
 
 	for _, ply in ipairs(players) do
-		if ply && ply:IsConnected() then
+		if ply and ply:IsConnected() then
 			updatePlayer(ply)
 		end
 	end

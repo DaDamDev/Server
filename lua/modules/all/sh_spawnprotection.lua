@@ -29,7 +29,7 @@ else
 		local ply = net.ReadEntity()
 		
 		if ply then
-			if ply != LocalPlayer() then
+			if ply ~= LocalPlayer() then
 				local key = ply:UniqueID()
 				
 				hook.Add("PostDrawOpaqueRenderables", "dadam_spawnprotection_"..key, function()

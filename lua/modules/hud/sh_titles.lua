@@ -59,7 +59,7 @@ else
 			local lpp = LocalPlayer():GetPos()
 			
 			for k, ply in pairs(player.GetAll()) do
-				if ply != LocalPlayer() then
+				if ply ~= LocalPlayer() then
 					local plyp = ply:GetPos()
 					local dist = math.sqrt((lpp.x - (plyp.x))^2 + (lpp.y - (plyp.y))^2 + (lpp.z - (plyp.z))^2)
 					local color = ColorAlpha(Color(255, 255, 255), (1000-dist))

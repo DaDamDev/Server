@@ -53,7 +53,7 @@ else
 			if table.Count(time) > 0 then
 				for ply, t in pairs(time) do
 					if table.HasValue(player.GetAll(), ply) then
-						if ply != LocalPlayer() and time[ply] > 60 and not ply:IsBot() then
+						if ply ~= LocalPlayer() and time[ply] > 60 and not ply:IsBot() then
 							local plyp = ply:GetPos()
 							local dist = math.sqrt((lpp.x - (plyp.x))^2 + (lpp.y - (plyp.y))^2 + (lpp.z - (plyp.z))^2)
 							local color = ColorAlpha(Color(255, 0, 0), (1000-dist))

@@ -7,7 +7,7 @@ if SERVER then
 		local plys = {}
 		
 		for k, ply2 in pairs(player.GetAll()) do
-			if ply != ply2 then
+			if ply ~= ply2 then
 				table.insert(plys, ply2)
 			end
 		end

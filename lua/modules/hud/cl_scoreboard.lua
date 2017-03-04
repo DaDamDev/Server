@@ -103,12 +103,12 @@ local function players()
 				draw.DrawText("Deaths: "..ply:Deaths(), "dadam_scoreboard_menu", 243*r, 51*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
 			end
 			
-			if ply != LocalPlayer() then
+			if ply ~= LocalPlayer() then
 				Mute = vgui.Create("DImageButton", Scrollbar)
 				Mute:SetSize(29.3*r, 29.3*r)
 				Mute:SetPos(970*r, 50*k*r + offset*r)
 				Mute.DoClick = function() 
-					ply:SetMuted(!ply:IsMuted())
+					ply:SetMuted(not ply:IsMuted())
 					
 					if ply:IsMuted() == true then
 						Mute:SetImage("icon32/muted.png")
@@ -204,7 +204,7 @@ function show()
 	end)
 
 	timer.Create("dadam_scoreboard_playercheck", 0.1, 0, function()
-		if plyC != table.Count(player.GetAll()) then
+		if plyC ~= table.Count(player.GetAll()) then
 			hide()
 			show()
 		end

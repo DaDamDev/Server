@@ -15,7 +15,7 @@ local rest = {
 
 local function spawnWep(ply, weapon, swep)
 	if rest.wep then
-		if !ply:IsValid() then return false end
+		if not ply:IsValid() then return false end
 		
 		if weapons[team.GetName(ply:Team())] then
 			local allowed = weapons[team.GetName(ply:Team())]
@@ -32,7 +32,7 @@ local function spawnWep(ply, weapon, swep)
 end
 
 local function spawnSent(ply, class)
-	if !ply:IsValid() then return false end
+	if not ply:IsValid() then return false end
 	
 	if sents[team.GetName(ply:Team())] then
 		local restricted = sents[team.GetName(ply:Team())]

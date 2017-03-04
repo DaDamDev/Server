@@ -19,7 +19,7 @@ local function ResetSpawn(ply)
 end
 
 hook.Add("PlayerSpawn", "dadam_setspawn", function(ply)
-	if spawns[ply] != nil then
+	if spawns[ply] ~= nil then
 		ply:SetPos(spawns[ply].pos)
 		ply:SetEyeAngles(spawns[ply].ang)
 	end

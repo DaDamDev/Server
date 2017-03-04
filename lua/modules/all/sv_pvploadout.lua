@@ -1,7 +1,7 @@
 local type = true
 
 hook.Add("PlayerLoadout", "dadam_pvploadout", function(ply)
-	if team.GetName(ply:Team()) == "PvP" || team.GetName(ply:Team()) == "PvP 2" then
+	if team.GetName(ply:Team()) == "PvP" or team.GetName(ply:Team()) == "PvP 2" then
 		if type then
 			ply:Give("fas2_dv2")
 		elseif not type then
