@@ -1,4 +1,4 @@
-local list = {
+local addons = {
 	wiremod = 160250458,
 	sprops = 173482196,
 	mediaplayer = 546392647,
@@ -16,6 +16,6 @@ local list = {
 	mbilliards = 299551243
 }
 
-for name, id in pairs(list) do
-	resource.AddWorkshop(""..id)
+for name, id in pairs(addons) do
+	resource.AddWorkshop(tostring(id))
 end
