@@ -1,5 +1,4 @@
 module("time", package.seeall)
-if not SERVER then return end
 
 --time_welcome = CreateConVar("time_welcome", "1", FCVAR_ARCHIVE)
 
