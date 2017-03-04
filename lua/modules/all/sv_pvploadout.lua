@@ -23,7 +23,6 @@ concommand.Add("pvploadout_type", function()
 		name = "css"
 	end
 	
-	for _, ply in ipairs(player.GetAll()) do
-		ply:ChatPrint("PvP weaponloadout has been set to "..name)
-	end
+	
+	dadam.Message("PvP weaponloadout has been set to "..name)
 end)

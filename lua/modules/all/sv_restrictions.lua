@@ -26,7 +26,7 @@ local function spawnWep(ply, weapon, swep)
 			return true
 		end
 		
-		ply:ChatPrint("Sorry, you are not allowed to spawn "..weapon)
+		dadam.Message("Sorry, you are not allowed to spawn "..weapon, ply)
 		return false
 	end
 end
@@ -43,7 +43,7 @@ local function spawnSent(ply, class)
 		return true
 	end
 	
-	ply:ChatPrint("Sorry, you are not allowed to spawn "..class)
+	dadam.Message("Sorry, you are not allowed to spawn "..class, ply)
 	return false
 end
 
@@ -54,9 +54,7 @@ hook.Add("PlayerSpawnSENT", "dadam_restrictions", spawnSent)
 
 concommand.Add("restrict_wep", function()
 	rest.wep = not rest.wep
-	for _, ply in ipairs(player.GetAll()) do
-		ply:ChatPrint("Weapon restrictions have now been toggled to "..(tostring(rest.wep)))
-	end
+	dadam.Message("Weapon restrictions have now been toggled to "..(tostring(rest.wep)))
 end)
 
 rest.wep = true

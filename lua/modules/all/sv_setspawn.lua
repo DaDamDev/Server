@@ -5,16 +5,16 @@ local function SetSpawn(ply)
 	spawns[ply].pos = ply:GetPos()
 	spawns[ply].ang = ply:EyeAngles()
 	
-	ply:ChatPrint("Your spawn has been set.")
+	dadam.Message("Your spawn has been set.", ply)
 end
 
 local function ResetSpawn(ply)
 	if spawns[ply] then
 		spawns[ply] = nil
 		
-		ply:ChatPrint("Your spawn has been reset.")
+		dadam.Message("Your spawn has been reset.", ply)
 	else
-		ply:ChatPrint("You did not have a spawnpoint set.")
+		dadam.Message("You did not have a spawnpoint set.", ply)
 	end
 end
 
