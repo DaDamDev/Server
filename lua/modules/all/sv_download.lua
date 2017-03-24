@@ -29,5 +29,5 @@ for name, id in pairs(addons) do
 end
 
 for name, path in pairs(files) do
-	resource.AddSingleFile(path)
+	resource.AddFile(path)
 end
