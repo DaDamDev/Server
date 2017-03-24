@@ -1,4 +1,4 @@
-dadam = {}
+dadam = dadam or {}
 
 if SERVER then
 	util.AddNetworkString("dadam_message")
