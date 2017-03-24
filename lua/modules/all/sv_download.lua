@@ -21,7 +21,7 @@ local addons = {
 }
 
 local files = {
-	dark_ui_material		= "materials/skins/dark"
+	dark_ui_material		= "materials/skins/dark.png"
 }
 
 for name, id in pairs(addons) do
