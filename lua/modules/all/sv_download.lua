@@ -17,6 +17,7 @@ local addons = {
 	simfphys_base			= 771487490,
 	simfphys_porsche		= 810107315,
 	simfphys_porscheclassic	= 785786058,
+	white_texture_pack		= 256056339,
 }
 
 for name, id in pairs(addons) do
