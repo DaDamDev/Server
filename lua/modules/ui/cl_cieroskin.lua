@@ -7,7 +7,7 @@ SKIN = {}
 SKIN.PrintName 		= "Ciero Dark Spawnmenu Skin"
 SKIN.Author 		= "AquaRex"
 SKIN.DermaVersion	= 2
-SKIN.GwenTexture	= Material( "gwenskin/cieroskin.png" )
+SKIN.GwenTexture	= Material( "skins/dark" )
 
 SKIN.bg_color 					= Color( 101, 100, 105, 255 )
 SKIN.bg_color_sleep 			= Color( 70, 70, 70, 255 )

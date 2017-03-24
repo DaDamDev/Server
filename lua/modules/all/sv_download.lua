@@ -20,6 +20,14 @@ local addons = {
 	white_texture_pack		= 256056339,
 }
 
+local files = {
+	dark_ui_material		= "materials/skins/dark"
+}
+
 for name, id in pairs(addons) do
 	resource.AddWorkshop(tostring(id))
+end
+
+for name, path in pairs(files) do
+	resource.AddSingleFile(path)
 end
