@@ -11,13 +11,13 @@ local addons = {
 	fas_smgs				= 183139624,
 	fas_pistols				= 181283903,
 	fas_rifles				= 181656972,
-	bobster_train			= 489114511,
-	magnum_train			= 260954002,
 	mbilliards				= 299551243,
 	simfphys_base			= 771487490,
 	simfphys_porsche		= 810107315,
 	simfphys_porscheclassic	= 785786058,
 	white_texture_pack		= 256056339,
+	more_materials			= 105841291,
+	race_seats				= 471435979,
 }
 
 local files = {

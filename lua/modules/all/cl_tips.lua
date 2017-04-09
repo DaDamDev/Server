@@ -16,7 +16,8 @@ function dadam.Tip(msg)
 	chat.AddText(Color(197, 197, 141), "???", Color(255, 255, 255), ": ", Color(197, 197, 141), msg)
 end
 
-timer.Create("dadam_tips", 90, 0, function()
+timer.Create("dadam_tips", 120, 0, function()
 	if dadam.tipEnabled then
+		dadam.Tip(tips[math.Round(math.Rand(0.5, #tips + 0.499))])
 	end
 end)

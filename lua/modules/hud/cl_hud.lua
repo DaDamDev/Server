@@ -71,11 +71,14 @@ hook.Add("ULibLocalPlayerReady", "dadam_hud", function(plyrdy)
 		
 	end)
 	
+	
+	local hudHide = {
+		["CHudHealth"] = true,
+		["CHudBattery"] = true,
+		["CHudAmmo"] = true
+	}
+	
 	hook.Add("HUDShouldDraw", "dadam_hud", function(name)
-		local hud = {"CHudHealth", "CHudBattery", "CHudAmmo"}
-		for k, element in pairs(hud) do
-			if name == element then return false end
-		end
-		return true
+		if hudHide[name] then return false end
 	end)
 end)
