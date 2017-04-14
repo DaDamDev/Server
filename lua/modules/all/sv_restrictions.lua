@@ -47,6 +47,18 @@ local function spawnSent(ply, class)
 	return false
 end
 
+hook.Add("PlayerSpawnVehicle", "dadam_restrict_simfphys", function(ply, model, name, table)
+	if string.sub(name, 1, 10) == "sim_fphys_" then
+		local t = team.GetName(ply:Team())
+		
+		if t == "Guest" or t == "Player" or t == "Regular" then
+			ply:ChatPrint("Sorry, you are not allowed to spawn "..class)
+			
+			return false
+		end
+	end
+end)
+
 hook.Add("PlayerSpawnSWEP", "dadam_restrictions", spawnWep)
 hook.Add("PlayerGiveSWEP", "dadam_restrictions", spawnWep)
 
