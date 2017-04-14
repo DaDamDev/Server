@@ -1,9 +1,12 @@
 local base
-local skinConvar
+local skinConvar, tipConvar, piConvar, piaConvar
 
 local function open()
 	if not base then
 		skinConvar = GetConVar("ddd_skin")
+		tipConvar = GetConVar("ddd_tips")
+		piConvar = GetConVar("ddd_pi")
+		piaConvar = GetConVar("ddd_pia")
 		
 		local w, h = ScrW(), ScrH()
 		
@@ -15,9 +18,30 @@ local function open()
 		base:SetDeleteOnClose(false)
 		function base:OnClose() base:Hide() end
 		
+		-----Tips-----
+		local tip = vgui.Create("DCheckBoxLabel", base)
+		tip:SetPos(25, 50)
+		tip:SetValue(tipConvar:GetBool())
+		tip:SetText("Enable Tips")
+		tip:SetConVar("ddd_tips")
+		
+		-----Propinfo-----
+		local pi = vgui.Create("DCheckBoxLabel", base)
+		pi:SetPos(25, 80)
+		pi:SetValue(piConvar:GetBool())
+		pi:SetText("Enable Propinfo")
+		pi:SetConVar("ddd_pi")
+		
+		-----Adv Propinfo-----
+		local pia = vgui.Create("DCheckBoxLabel", base)
+		pia:SetPos(25, 110)
+		pia:SetValue(piaConvar:GetBool())
+		pia:SetText("Enable Advanced Propinfo")
+		pia:SetConVar("ddd_pia")
+		
 		-----Skin-----
 		local skin = vgui.Create("DCollapsibleCategory", base)
-		skin:SetPos(25, 50)
+		skin:SetPos(25, 140)
 		skin:SetSize(150, 100)
 		skin:SetExpanded(0)
 		skin:SetLabel("UI Skin (" .. skinConvar:GetString() .. ")")
