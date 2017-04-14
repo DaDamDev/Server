@@ -9,7 +9,7 @@ hook.Add("ULibLocalPlayerReady", "dadam_tips", function()
 		"Want to make Garry's Mod more enjoyable? Type 'voice_enable 0' in console",
 		"Type '!setspawn' in chat to set your spawn and '!resetspawn' to reset it",
 		"You get autoranked to Player/Regular after 24/48h of playtime on the server",
-		"Type '!setings' in chat to open the settings menu"
+		"Type '!settings' in chat to open the settings menu"
 	}
 
 	function dadam.Tip(msg)
