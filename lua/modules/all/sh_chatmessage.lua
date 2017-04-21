@@ -65,12 +65,14 @@ else
 			table.insert(textT, "{DEAD} ")
 		end
 		
-		if ply then
+		if ply:IsPlayer() then
 			table.insert(textT, team.GetColor(ply:Team()))
 			table.insert(textT, ply:Nick())
 		else
+			local dddev = string.char(225, 180, 133, 225, 180, 133, 225, 180, 133, 225, 180, 135, 225, 180, 160)
+			
 			table.insert(textT, Color(0, 220, 255))
-			table.insert(textT, "Console")
+			table.insert(textT, dddev)
 		end
 		
 		table.insert(textT, Color(255, 255, 255))
