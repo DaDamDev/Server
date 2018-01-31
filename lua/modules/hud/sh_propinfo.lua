@@ -1,28 +1,31 @@
 if SERVER then
-	hook.Add("Initialize", "dadam_propinfo", function()
-		local function getConstraints(ent)
-			local tbl = constraint.GetTable(ent)
-			local data = {}
-			
-			for k, v in pairs(tbl) do
-				data[v.Type] = data[v.Type] or 0
-				data[v.Type] = data[v.Type] + 1
-			end
-			
-			return data
+	util.AddNetworkString("dadam_propinfo")
+	
+	local timeouts = {}
+	
+	local function getConstraints(ent)
+		local tbl = constraint.GetTable(ent)
+		local data = {}
+		
+		for k, v in pairs(tbl) do
+			data[v.Type] = data[v.Type] or 0
+			data[v.Type] = data[v.Type] + 1
 		end
 		
-		util.AddNetworkString("dadam_propinfo")
+		return data
+	end
+	
+	net.Receive("dadam_propinfo", function(len, ply)
+		if timeouts[ply] > CurTime() then return end
+		timeouts[ply] = CurTime() + 0.9
 		
-		net.Receive("dadam_propinfo", function(len, ply)
-			local ent = net.ReadEntity()
-			
-			if ent:IsValid() then
-				net.Start("dadam_propinfo")
-				net.WriteTable(getConstraints(ent))
-				net.Send(ply)
-			end
-		end)
+		local ent = net.ReadEntity()
+		
+		if ent:IsValid() then
+			net.Start("dadam_propinfo")
+			net.WriteTable(getConstraints(ent))
+			net.Send(ply)
+		end
 	end)
 else
 	hook.Add("ULibLocalPlayerReady", "dadam_propinfo", function()

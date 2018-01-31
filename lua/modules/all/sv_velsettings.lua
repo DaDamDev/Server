@@ -1,7 +1,9 @@
 hook.Add("Initialize", "dadam_velsettings", function()
-	local tbl = physenv.GetPerformanceSettings()
-	tbl.MaxAngularVelocity = 30000
-	tbl.MaxVelocity = 20000
+	timer.Simple(1, function()
+		local tbl = physenv.GetPerformanceSettings()
+		tbl.MaxAngularVelocity = 30000
+		tbl.MaxVelocity = 20000
 
-	physenv.SetPerformanceSettings(tbl)
+		physenv.SetPerformanceSettings(tbl)
+	end)
 end)

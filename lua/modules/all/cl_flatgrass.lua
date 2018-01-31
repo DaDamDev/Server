@@ -99,7 +99,7 @@ hook.Add("ULibLocalPlayerReady", "dadam_flatgrass_cosmetic", function(plyrdy)
 				
 				-----Random clocks-----
 				--Train station clock
-				local time = os.date("*t", os.time())
+				--[[local time = os.date("*t", os.time())
 				
 				local x, y = math.sin(math.rad(-time.sec/60*360)) * 10, math.cos(math.rad(-time.sec/60*360)) * 10
 				render.DrawLine(Vector(186.4, -218.771545, -12619.8), Vector(186.4, -218.771545 + x, -12619.8 + y), Color(255, 0, 0), true)
@@ -108,7 +108,7 @@ hook.Add("ULibLocalPlayerReady", "dadam_flatgrass_cosmetic", function(plyrdy)
 				render.DrawLine(Vector(186.4, -218.771545, -12619.8), Vector(186.4, -218.771545 + x, -12619.8 + y), Color(0, 0, 0), true)
 				
 				local x, y = math.sin(math.rad(-time.hour/12*360)) * 4, math.cos(math.rad(-time.hour/12*360)) * 5
-				render.DrawLine(Vector(186.4, -218.771545, -12619.8), Vector(186.4, -218.771545 + x, -12619.8 + y), Color(0, 0, 0), true)
+				render.DrawLine(Vector(186.4, -218.771545, -12619.8), Vector(186.4, -218.771545 + x, -12619.8 + y), Color(0, 0, 0), true)]]
 			end)
 		end
 	end)
