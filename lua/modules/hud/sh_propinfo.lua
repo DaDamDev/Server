@@ -16,7 +16,8 @@ if SERVER then
 	end
 	
 	net.Receive("dadam_propinfo", function(len, ply)
-		if timeouts[ply] > CurTime() then return end
+		if timeouts[ply] and timeouts[ply] > CurTime() then return end
+		
 		timeouts[ply] = CurTime() + 0.9
 		
 		local ent = net.ReadEntity()
