@@ -1,3 +1,4 @@
+--[[
 hook.Add("ULibLocalPlayerReady", "dadam_tips", function()
 	CreateClientConVar("ddd_tips", "0", true, false, "This toggle if tips will be displayed in chat.")
 
@@ -24,3 +25,4 @@ hook.Add("ULibLocalPlayerReady", "dadam_tips", function()
 		end
 	end)
 end)
+]]
