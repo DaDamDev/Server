@@ -1,5 +1,5 @@
 hook.Add("ULibLocalPlayerReady", "dadam_tips", function()
-	CreateClientConVar("ddd_tips", "1", true, false, "This toggle if tips will be displayed in chat.")
+	CreateClientConVar("ddd_tips", "0", true, false, "This toggle if tips will be displayed in chat.")
 
 	-- Small capitalized "TIP"
 	local tip = string.char(225, 180, 133, 225, 180, 133, 225, 180, 133, 225, 180, 135, 225, 180, 160)
