@@ -1,6 +1,6 @@
 if SERVER then
 	-- // Mats //
-	resource.AddFile("materials/hud/bullet2.png")
+	resource.AddFile("garrysmod/materials/hud/bullet2.png")
 end
 
 if CLIENT then
@@ -594,7 +594,7 @@ armorHUDcol.gain = Col(255, 84, 253, 200)
 armorHUDcol.background = Col(0, 100)
 
 
---[[
+--
 -- // Ammo //
 local w, h = 256, 70
 local ammoHUD = createHUDMagazine(1920 - w - 10, 1080 - h - 10, w, h)
@@ -662,13 +662,18 @@ hook.Add("HUDPaint", "Render_HUD_Shine", function()
 
 	armorHUD:SetVisible(armorHUD:GetValue() > 0 and not god)
 	armorHUD:ShowBar(armorHUD:GetValue() > 0 and not god)
-
+	
+	ammoHUD.t1 = 0
 	if false and me:GetActiveWeapon():IsValid() then
 		local weapon = me:GetActiveWeapon()
 		ammoHUD.val1 = weapon:Clip1() -- Current Clip
 		ammoHUD.val3 = weapon:GetMaxClip1() -- Max Clip Size
 		ammoHUD.val2 = me:GetAmmoCount(weapon:GetPrimaryAmmoType()) -- Total Ammo
 		ammoHUD.val4 = me:GetAmmoCount(weapon:GetSecondaryAmmoType()) -- 2nd Ammo Type
+		
+		if ammoHUD.val1 > 0 then
+			ammoHUD.t1 = 1
+		end
 	end
 
 
