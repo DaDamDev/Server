@@ -1,3 +1,4 @@
+----- Module Loader -----
 local base = "modules/"
 local _, folders = file.Find(base .. "*", "LUA")
 
@@ -12,6 +13,7 @@ for _, folder in pairs(folders) do
 			include(fullPath)
 		elseif pre == "cl" then
 			AddCSLuaFile(fullPath)
+			
 			if CLIENT then
 				include(fullPath)
 			end

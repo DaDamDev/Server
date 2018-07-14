@@ -1,14 +1,16 @@
+-- TODO: update visuals to fit new HUD + make not shit
+
 local Base, Scrollbar
 local menus = {}
 local plyC = table.Count(player.GetAll())
 
-surface.CreateFont("dadam_scoreboard", {
+surface.CreateFont("sbv_scoreboard", {
   font = "Trebuchet24",
   size = ScrH()/1080*25,
   weight = 1000
 } )
 
-surface.CreateFont("dadam_scoreboard_menu", {
+surface.CreateFont("sbv_scoreboard_menu", {
   font = "Trebuchet24",
   size = ScrH()/1080*13,
   weight = 300
@@ -49,20 +51,20 @@ local function players()
 		MenuButton.DoClick = function() menu(k) end
 		MenuButton.Paint = function(self, w, h)
 			draw.RoundedBox(1, 0, 0, 1000*r, 46*r, ColorAlpha(team.GetColor(ply:Team()), 200))
-			draw.DrawText(ply:Name(), "dadam_scoreboard", 50*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-			draw.DrawText(team.GetName(ply:Team()), "dadam_scoreboard", 900*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_RIGHT)
-			draw.DrawText(ply:Ping(), "dadam_scoreboard", 990*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_RIGHT)
+			draw.DrawText(ply:Name(), "sbv_scoreboard", 50*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+			draw.DrawText(team.GetName(ply:Team()), "sbv_scoreboard", 900*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_RIGHT)
+			draw.DrawText(ply:Ping(), "sbv_scoreboard", 990*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_RIGHT)
 			
-			if ply:GetNWInt("dadam_afktimer") > 60 then
-				draw.DrawText(FancyTime(ply:GetNWInt("dadam_afktimer")), "dadam_scoreboard", 460*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_CENTER)
+			if ply:GetNWInt("sbv_afktimer") > 60 then
+				draw.DrawText(FancyTime(ply:GetNWInt("sbv_afktimer")), "sbv_scoreboard", 460*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_CENTER)
 			end
 			
-			draw.DrawText(math.floor(ply:GetTimeTotalTime()/60/60).." Hours", "dadam_scoreboard", 660*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_CENTER)
+			draw.DrawText(math.floor(ply:GetTimeTotalTime()/60/60).." Hours", "sbv_scoreboard", 660*r, 10*r, Color(0, 0, 0, 255), TEXT_ALIGN_CENTER)
 			
-			--draw.DrawText("HP: "..ply:Health(), "dadam_scoreboard_stats", 500*r, 5*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-			--draw.DrawText("Armor: "..ply:Armor(), "dadam_scoreboard_stats", 500*r, 25*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-			--draw.DrawText("Kills: "..ply:Frags(), "dadam_scoreboard_stats", 500*r + 150*r, 5*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-			--draw.DrawText("Deaths: "..ply:Deaths(), "dadam_scoreboard_stats", 500*r + 150*r, 25*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+			--draw.DrawText("HP: "..ply:Health(), "sbv_scoreboard_stats", 500*r, 5*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+			--draw.DrawText("Armor: "..ply:Armor(), "sbv_scoreboard_stats", 500*r, 25*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+			--draw.DrawText("Kills: "..ply:Frags(), "sbv_scoreboard_stats", 500*r + 150*r, 5*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+			--draw.DrawText("Deaths: "..ply:Deaths(), "sbv_scoreboard_stats", 500*r + 150*r, 25*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
 		end
 		
 		local Avatar = vgui.Create("AvatarImage", Scrollbar)
@@ -83,24 +85,24 @@ local function players()
 			Menu.Paint = function(self, w, h)
 				draw.RoundedBox(1, 0, 0, 1000*r, 100*r, ColorAlpha(team.GetColor(ply:Team()), 150))
 				
-				draw.DrawText("Props: "..ply:GetCount("props"), "dadam_scoreboard_menu", 3*r, 3*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("SENTs: "..ply:GetCount("sents"), "dadam_scoreboard_menu", 3*r, 19*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("Vehicles: "..ply:GetCount("vehicles"), "dadam_scoreboard_menu", 3*r, 35*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("Effects: "..ply:GetCount("Effects"), "dadam_scoreboard_menu", 3*r, 51*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("Lamps: "..ply:GetCount("lamps"), "dadam_scoreboard_menu", 3*r, 67*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("Balloons: "..ply:GetCount("balloons"), "dadam_scoreboard_menu", 3*r, 83*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Props: "..ply:GetCount("props"), "sbv_scoreboard_menu", 3*r, 3*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("SENTs: "..ply:GetCount("sents"), "sbv_scoreboard_menu", 3*r, 19*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Vehicles: "..ply:GetCount("vehicles"), "sbv_scoreboard_menu", 3*r, 35*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Effects: "..ply:GetCount("Effects"), "sbv_scoreboard_menu", 3*r, 51*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Lamps: "..ply:GetCount("lamps"), "sbv_scoreboard_menu", 3*r, 67*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Balloons: "..ply:GetCount("balloons"), "sbv_scoreboard_menu", 3*r, 83*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
 				
-				draw.DrawText("E2s: "..ply:GetCount("wire_expressions"), "dadam_scoreboard_menu", 123*r, 3*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("SFs: "..ply:GetCount("starfall_processor"), "dadam_scoreboard_menu", 123*r, 19*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("EA2s: "..ply:GetCount("expadv_gate"), "dadam_scoreboard_menu", 123*r, 35*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("SPUs: "..ply:GetCount("wire_spus"), "dadam_scoreboard_menu", 123*r, 51*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("CPUs: "..ply:GetCount("wire_cpus"), "dadam_scoreboard_menu", 123*r, 67*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("GPUs: "..ply:GetCount("wire_gpus"), "dadam_scoreboard_menu", 123*r, 83*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("E2s: "..ply:GetCount("wire_expressions"), "sbv_scoreboard_menu", 123*r, 3*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("SFs: "..ply:GetCount("starfall_processor"), "sbv_scoreboard_menu", 123*r, 19*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("EA2s: "..ply:GetCount("expadv_gate"), "sbv_scoreboard_menu", 123*r, 35*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("SPUs: "..ply:GetCount("wire_spus"), "sbv_scoreboard_menu", 123*r, 51*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("CPUs: "..ply:GetCount("wire_cpus"), "sbv_scoreboard_menu", 123*r, 67*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("GPUs: "..ply:GetCount("wire_gpus"), "sbv_scoreboard_menu", 123*r, 83*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
 				
-				draw.DrawText("HP: "..ply:Health(), "dadam_scoreboard_menu", 243*r, 3*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("Armor: "..ply:Armor(), "dadam_scoreboard_menu", 243*r, 19*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("Kills: "..ply:Frags(), "dadam_scoreboard_menu", 243*r, 35*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
-				draw.DrawText("Deaths: "..ply:Deaths(), "dadam_scoreboard_menu", 243*r, 51*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("HP: "..ply:Health(), "sbv_scoreboard_menu", 243*r, 3*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Armor: "..ply:Armor(), "sbv_scoreboard_menu", 243*r, 19*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Kills: "..ply:Frags(), "sbv_scoreboard_menu", 243*r, 35*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
+				draw.DrawText("Deaths: "..ply:Deaths(), "sbv_scoreboard_menu", 243*r, 51*r, Color(0, 0, 0, 255), TEXT_ALIGN_LEFT)
 			end
 			
 			if ply ~= LocalPlayer() then
@@ -146,7 +148,7 @@ local function players()
 					PMW.Paint = function()
 						draw.RoundedBox(5, 0, 0, 400, 100, Color(20, 20, 20, 200))
 						
-						draw.DrawText("Send a private messages to "..ply:Nick(), "dadam_scoreboard_menu", 200, 3*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
+						draw.DrawText("Send a private messages to "..ply:Nick(), "sbv_scoreboard_menu", 200, 3*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
 					end
 					
 					local PMT = vgui.Create("DTextEntry", PMW)
@@ -184,11 +186,11 @@ function show()
 		surface.SetMaterial(Material("gui/gmod_logo"))
 		surface.DrawTexturedRect(-30*r, -10*r, 220*r, 220*r)
 		
-		draw.DrawText(GetHostName(), "dadam_scoreboard", 500*r, 20*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
-		draw.DrawText("AFK", "dadam_scoreboard", 460*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
-		draw.DrawText("Server Time", "dadam_scoreboard", 660*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
-		draw.DrawText("Rank", "dadam_scoreboard", 900*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_RIGHT)
-		draw.DrawText("Ping", "dadam_scoreboard", 990*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_RIGHT)
+		draw.DrawText(GetHostName(), "sbv_scoreboard", 500*r, 20*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
+		draw.DrawText("AFK", "sbv_scoreboard", 460*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
+		draw.DrawText("Server Time", "sbv_scoreboard", 660*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_CENTER)
+		draw.DrawText("Rank", "sbv_scoreboard", 900*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_RIGHT)
+		draw.DrawText("Ping", "sbv_scoreboard", 990*r, 120*r, Color(220, 220, 220, 255), TEXT_ALIGN_RIGHT)
 	end
 	
 	Scrollbar = vgui.Create("DScrollPanel", Base)
@@ -197,13 +199,13 @@ function show()
 	
 	players()
 	
-	timer.Create("dadam_scoreboard_ping", 1, 0, function()
+	timer.Create("sbv_scoreboard_ping", 1, 0, function()
 		if Base.Paint then
 			Base.Paint()
 		end
 	end)
 
-	timer.Create("dadam_scoreboard_playercheck", 0.1, 0, function()
+	timer.Create("sbv_scoreboard_playercheck", 0, 0, function()
 		if plyC ~= table.Count(player.GetAll()) then
 			hide()
 			show()
@@ -216,11 +218,11 @@ end
 function hide()
 	Base:Remove()
 	
-	timer.Stop("dadam_scoreboard_ping")
-	timer.Stop("dadam_scoreboard_playercheck")
+	timer.Stop("sbv_scoreboard_ping")
+	timer.Stop("sbv_scoreboard_playercheck")
 end
 
-hook.Add("ScoreboardShow", "dadam_scoreboard", function()
+hook.Add("ScoreboardShow", "sbv_scoreboard", function()
 	--[[if Base then
 		Base:Remove()
 	end]]--
@@ -230,7 +232,7 @@ hook.Add("ScoreboardShow", "dadam_scoreboard", function()
 	return false
 end)
 
-hook.Add("ScoreboardHide", "dadam_scoreboard", function()
+hook.Add("ScoreboardHide", "sbv_scoreboard", function()
 	hide()
 	
 	menus = {}

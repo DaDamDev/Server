@@ -2,27 +2,23 @@ if SERVER then
 	util.AddNetworkString("popup_set")
 	util.AddNetworkString("popup_remove")
 	
-	function popup_sim(calling_ply, target_plys, amount)
-		if SERVER then
-			if amount > 0 then
-				ulx.fancyLogAdmin(calling_ply, "#A has given "..amount.." popups to #T!", target_plys)
-			else
-				ulx.fancyLogAdmin(calling_ply, "#A has given infinite popups to #T!", target_plys)
-			end
-			
-			net.Start("popup_set")
-			net.WriteInt(amount, 32)
-			net.Send(target_plys)
+	function ulx.popup(calling_ply, target_plys, amount)
+		if amount > 0 then
+			ulx.fancyLogAdmin(calling_ply, "#A has given "..amount.." popups to #T!", target_plys)
+		else
+			ulx.fancyLogAdmin(calling_ply, "#A has given infinite popups to #T!", target_plys)
 		end
+		
+		net.Start("popup_set")
+		net.WriteInt(amount, 32)
+		net.Send(target_plys)
 	end
 	
-	function popup_sim_remove(calling_ply, target_plys)
-		if SERVER then
-			ulx.fancyLogAdmin(calling_ply, "#A has stopped the popups from #T!", target_plys)
-			
-			net.Start("popup_remove")
-			net.Send(target_plys)
-		end
+	function ulx.unpopup(calling_ply, target_plys)
+		ulx.fancyLogAdmin(calling_ply, "#A has stopped the popups from #T!", target_plys)
+		
+		net.Start("popup_remove")
+		net.Send(target_plys)
 	end
 else
 	local amount = -1
@@ -40,51 +36,51 @@ else
 		s6 = "garrysmod/save_load4.wav"
 	}
 	
-	local popupTypes = {}
-	
-	popupTypes["default_nose"] = {
-		txt1 = "Do you have a tiny nose?",
-		txt2 = "Try our free nose enlarger!",
-		but = "CLICK HERE TO TRY IT!",
-		img = "gui/postprocess/morph.png"
-	}; popupTypes["default_vacation"] = {
-		txt1 = "Are you overworked?",
-		txt2 = "You need a vacation!",
-		but = "CHANGE YOUR LIFE!",
-		img = "hlmv/background"
-	}; popupTypes["default_floor"] = {
-		txt1 = "Is your floor old fashion?",
-		txt2 = "Yes it is!",
-		but = "GET A NEW FLOOR NOW!",
-		img = "gui/dupe_bg.png"
-	}; popupTypes["default_smile"] = {
-		txt1 = "Never be sad again!",
-		txt2 = "Try this one recipie for the ultimate smile!",
-		but = "GET A FREE TRIAL NOW!",
-		img = "vgui/face/grin"
-	}; popupTypes["default_learn"] = {
-		txt1 = "Confused what this is? WE TO!",
-		txt2 = "Learn more about this shit now!",
-		but = "CLICK HERE FOR FREE SIGNUP!",
-		img = "gwenskin/defaultskin.png"
-	}; popupTypes["default_hugs"] = {
-		txt1 = "Are you lonley?",
-		txt2 = "Hugs for only half the price now!",
-		but = "GET YOUR CHEAP HUGS NOW!",
-		img = "entities/npc_dog.png"
+	local popupTypes = {
+		default_nose = {
+			txt1 = "Do you have a tiny nose?",
+			txt2 = "Try our free nose enlarger!",
+			but = "CLICK HERE TO TRY IT!",
+			img = "gui/postprocess/morph.png"
+		}, default_vacation = {
+			txt1 = "Are you overworked?",
+			txt2 = "You need a vacation!",
+			but = "CHANGE YOUR LIFE!",
+			img = "hlmv/background"
+		}, default_floor = {
+			txt1 = "Is your floor old fashion?",
+			txt2 = "Yes it is!",
+			but = "GET A NEW FLOOR NOW!",
+			img = "gui/dupe_bg.png"
+		}, default_smile = {
+			txt1 = "Never be sad again!",
+			txt2 = "Try this one recipie for the ultimate smile!",
+			but = "GET A FREE TRIAL NOW!",
+			img = "vgui/face/grin"
+		}, default_learn = {
+			txt1 = "Confused what this is? WE TO!",
+			txt2 = "Learn more about this shit now!",
+			but = "CLICK HERE FOR FREE SIGNUP!",
+			img = "gwenskin/defaultskin.png"
+		}, default_hugs = {
+			txt1 = "Are you lonley?",
+			txt2 = "Hugs for only half the price now!",
+			but = "GET YOUR CHEAP HUGS NOW!",
+			img = "entities/npc_dog.png"
+		}
 	}
 	
 	surface.CreateFont("popup_desc", {
 	  font = "Arial",
 	  size = 15,
 	  weight = 1000
-	} )
+	})
 	
 	surface.CreateFont("popup_button", {
 	  font = "Arial",
 	  size = 20,
 	  weight = 1000
-	} )
+	})
 	
 	local function popupCreate(txt, txt2, buttontxt, img)
 		local w = ScrW()
@@ -176,13 +172,13 @@ else
 	end)
 end
 
-local cmd = ulx.command("Fun", "ulx popup", popup_sim, "!popup")
-cmd:addParam{type = ULib.cmds.PlayersArg}
-cmd:addParam{type = ULib.cmds.NumArg}
+local cmd = ulx.command("Fun", "ulx popup", ulx.popup, "!popup")
+cmd:addParam({type = ULib.cmds.PlayersArg})
+cmd:addParam({type = ULib.cmds.NumArg})
 cmd:defaultAccess(ULib.ACCESS_ADMIN)
 cmd:help("Gives your victem(s) annoying popup-adds!")
 
-local cmd2 = ulx.command("Fun", "ulx unpopup", popup_sim_remove, "!unpopup")
-cmd2:addParam{type = ULib.cmds.PlayersArg}
+local cmd2 = ulx.command("Fun", "ulx unpopup", ulx.unpopup, "!unpopup")
+cmd2:addParam({type = ULib.cmds.PlayersArg})
 cmd2:defaultAccess(ULib.ACCESS_ADMIN)
 cmd2:help("Removes the annoying popup-adds from your victem(s)!")
