@@ -610,10 +610,6 @@ ammoHUD:MapToScreen(1920, 1080, ScrW(), ScrH())
 								The Hooks
 ----###################################################################################]]--
 local me = LocalPlayer()
-hook.Add("Update", "Update_HUD_Shine", function()
-	me = LocalPlayer()
-end)
-
 
 
 hook.Remove("HUDPaint", "dadam_hud")
@@ -621,6 +617,7 @@ hook.Remove("HUDPaint", "dadam_hud")
 
 local time = 0
 hook.Add("HUDPaint", "Render_HUD_Shine", function()
+	me = LocalPlayer()
 	-- // Values //
 	local hp = math.max(me:Health(), 0)
 	hpHUD:SetValue(hp)
