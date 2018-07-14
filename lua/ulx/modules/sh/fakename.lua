@@ -65,13 +65,13 @@ function ulx.resetname(caller, ply)
 	end
 end
 
-local cmd = ulx.command("Utility", "ulx fakename", ulx.fakename, "!fakename")
+local cmd = ulx.command("Utility", "ulx fakename", ulx.fakename, "!fakename", true)
 cmd:addParam{type = ULib.cmds.PlayerArg, ULib.cmds.optional}
 cmd:addParam{type = ULib.cmds.StringArg, hint = "name"}
 cmd:defaultAccess(ULib.ACCESS_SUPERADMIN)
 cmd:help("Gives a fake name.")
 
-local cmd = ulx.command("Utility", "ulx resetname", ulx.resetname, "!resetname")
+local cmd = ulx.command("Utility", "ulx resetname", ulx.resetname, "!resetname", true)
 cmd:addParam{type = ULib.cmds.PlayerArg, ULib.cmds.optional}
 cmd:defaultAccess(ULib.ACCESS_SUPERADMIN)
 cmd:help("Clears the fake name.")

@@ -21,9 +21,11 @@ hook.Add("PlayerInitialSpawn", "sbv_time", function(ply)
 	ply:SetTimeStart(CurTime())
 end)
 
-hook.Add("PlayerDisconnected", "sbv_time", function(ply)
-	sql.Query("UPDATE time SET totaltime = " .. math.floor(ply:GetTimeTotalTime()) .. " WHERE player = " .. ply:UniqueID() .. ";")
-end)
+function updatePlayer(ply)
+	sql.Query("UPDATE time SET totaltime = "..math.floor(ply:GetTimeTotalTime()).." WHERE player = "..ply:UniqueID()..";")
+end
+
+hook.Add("PlayerDisconnected", "sbv_time", updatePlayer)
 
 timer.Create("sbv_time", 67, 0, function()
 	local players = player.GetAll()

@@ -2,7 +2,7 @@ local meta = FindMetaTable("Player")
 
 local playerTeam = meta.Team
 function meta:Team()
-	return self:GetNWString("faketeam", playerTeam(self))
+	return self:GetNWInt("faketeam", playerTeam(self))
 end
 
 local teams = {}
@@ -18,12 +18,12 @@ if SERVER then
 	util.AddNetworkString("sbv_faketeam")
 
 	function meta:SetFakeTeam(id)
-		self:SetNWString("faketeam", id)
+		self:SetNWInt("faketeam", id)
 		self:SetPData("faketeam", id)
 	end
 
 	function meta:ResetTeam()
-		self:SetNWString("faketeam", nil)
+		self:SetNWInt("faketeam", nil)
 		self:RemovePData("faketeam")
 
 		net.Start("sbv_faketeam")
@@ -43,7 +43,7 @@ else
 		local ply = Player(net.ReadInt(32))
 
 		if IsValid(ply) then
-			ply:SetNWString("faketeam", nil)
+			ply:SetNWInt("faketeam", nil)
 		end
 	end)
 end
@@ -87,13 +87,13 @@ function ulx.resetrank(caller, ply)
 	end
 end
 
-local cmd = ulx.command("Utility", "ulx fakerank", ulx.fakerank, "!fakerank")
+local cmd = ulx.command("Utility", "ulx fakerank", ulx.fakerank, "!fakerank", true)
 cmd:addParam{type = ULib.cmds.PlayerArg, ULib.cmds.optional}
 cmd:addParam{type = ULib.cmds.StringArg, completes = teams, hint = "rankname"}
 cmd:defaultAccess(ULib.ACCESS_SUPERADMIN)
 cmd:help("Sets the team of the player to the team matching the given name.")
 
-local cmd = ulx.command("Utility", "ulx resetrank", ulx.resetrank, "!resetrank")
+local cmd = ulx.command("Utility", "ulx resetrank", ulx.resetrank, "!resetrank", true)
 cmd:addParam{type = ULib.cmds.PlayerArg, ULib.cmds.optional}
 cmd:defaultAccess(ULib.ACCESS_SUPERADMIN)
 cmd:help("Resets the players team to default.")
