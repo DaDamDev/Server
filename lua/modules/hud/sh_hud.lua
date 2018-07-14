@@ -594,6 +594,7 @@ armorHUDcol.gain = Col(255, 84, 253, 200)
 armorHUDcol.background = Col(0, 100)
 
 
+--[[
 -- // Ammo //
 local w, h = 256, 70
 local ammoHUD = createHUDMagazine(1920 - w - 10, 1080 - h - 10, w, h)
@@ -604,7 +605,7 @@ ammoHUD:SetTextSize(24)
 ammoHUD:AutoMax(true)
 ammoHUD:SetGap(10)
 ammoHUD:MapToScreen(1920, 1080, ScrW(), ScrH())
-
+]]
 
 
 
