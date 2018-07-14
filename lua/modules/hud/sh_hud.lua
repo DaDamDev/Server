@@ -26,6 +26,8 @@ local ShineFontSettings = {
 	outline = false,
 }
 surface.CreateFont("ShineFont", ShineFontSettings)
+	
+local Mats = {}
 
 
 --[[###################################################################################----
@@ -70,11 +72,12 @@ end
 --[[###################################################################################----
 								Functions
 ----###################################################################################]]--
+Mats.blur = Material("pp/blurscreen")
 local function DrawBlurRect(x, y, w, h, amt)
 
 	-- // Gets and Sets the Material /////////////
-	local mat = Material("pp/blurscreen")
-	surface.SetMaterial(mat)
+	
+	surface.SetMaterial(Mats.blur)
 	surface.SetDrawColor(255, 255, 255, 255)
 	-- ///////////////////////////////////////////
 
@@ -83,8 +86,8 @@ local function DrawBlurRect(x, y, w, h, amt)
 
 		-- // Blur Magic ///////////////////////////
 		for i = 1, amt, .25 do
-			mat:SetFloat("$blur", amt)
-			mat:Recompute()
+			Mats.blur:SetFloat("$blur", amt)
+			Mats.blur:Recompute()
 			render.UpdateScreenEffectTexture()
 
 			surface.DrawTexturedRect(0, 0, ScrW(), ScrH())
@@ -448,7 +451,8 @@ local function createHUDMagazine(x, y, w, h)
 	self.bullets = true
 	self.bulletSize = 16
 	self.bulletgap = 4
-	self.bulletMat = "materials/hud/bullet2.png"
+	self.bulletPath = "materials/hud/bullet2.png"
+	self.bulletMat = Material(self.bulletPath)
 	self.bulletAng = 90
 	self.bulletOffsets = {
 		x = 0,
@@ -517,7 +521,7 @@ local function createHUDMagazine(x, y, w, h)
 
 
 			-- // Mat //
-			surface.SetMaterial(Material(self.bulletMat))
+			surface.SetMaterial(self.bulletMat)
 			local off = self.bulletOffsets
 			local rad = math.abs(math.rad(self.bulletAng))
 			local sx = self.bulletSize + Lerp(math.cos(rad), off.w, off.h)
