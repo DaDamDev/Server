@@ -1,3 +1,9 @@
+if SERVER then
+	-- // Mats //
+	resource.AddFile("materials/hud/bullet2.png")
+end
+
+if CLIENT then
 --[[###################################################################################----
 								Vars n Stuff
 ----###################################################################################]]--
@@ -549,8 +555,6 @@ end
 								Setup
 ----###################################################################################]]--
 
--- // Mats //
-resource.AddFile("materials/hud/bullet2.png")
 
 -- // Health //
 local hpHUD = createHUDState(10, 1080 - 40, 256, 30)
@@ -682,3 +686,5 @@ local hudHide = {
 hook.Add("HUDShouldDraw", "ShineHUD", function(name)
 	if hudHide[name] then return false end
 end)
+
+end
