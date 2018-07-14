@@ -504,8 +504,6 @@ local function createHUDMagazine(x, y, w, h)
 			local x, y = self.x + self.w - self.gap - tw / 2, self.y + th / 4 + self.gap
 			drawText(self.textRight(self), x, y, 2, 1, 0, textcol, font)
 
-			drawText("Feedback u knuw, be honest tho", x - 400, y - 100, 0, 1, 0, textcol, font)
-
 
 			-- // Line //
 			surface.SetDrawColor(LerpCol(self.t1, colSetA(col.line, 0), col.line))
