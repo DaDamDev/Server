@@ -608,7 +608,6 @@ ammoHUD:MapToScreen(1920, 1080, ScrW(), ScrH())
 ]]
 
 
-
 --[[###################################################################################----
 								The Hooks
 ----###################################################################################]]--
@@ -664,7 +663,7 @@ hook.Add("HUDPaint", "Render_HUD_Shine", function()
 	armorHUD:SetVisible(armorHUD:GetValue() > 0 and not god)
 	armorHUD:ShowBar(armorHUD:GetValue() > 0 and not god)
 
-	if me:GetActiveWeapon():IsValid() then
+	if false and me:GetActiveWeapon():IsValid() then
 		local weapon = me:GetActiveWeapon()
 		ammoHUD.val1 = weapon:Clip1() -- Current Clip
 		ammoHUD.val3 = weapon:GetMaxClip1() -- Max Clip Size
