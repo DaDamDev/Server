@@ -61,11 +61,20 @@ if SERVER then
 		end
 	end)
 else
+	
+	local function setNoDrawPlayerProps(ply, state)
+		
+	end
+	
+	----------
+	
 	net.Receive("sbv_ghost", function()
 		local ply = Player(net.ReadInt(32))
 		
 		if isValid(ply) then
 			ghosts[ply] = net.ReadBool()
+			
+			setNoDrawPlayerProps(ply, true)
 		end
 	end)
 	
@@ -76,6 +85,6 @@ else
 	end)
 	
 	hook.Add("PrePlayerDraw", "sbv_ghost", function(ply)
-		if ghosts[ply] then return false end
+		if ghosts[ply] then return true end
 	end)
 end

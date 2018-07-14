@@ -75,26 +75,29 @@ end
 
 CUSTOM_BRUSHES_ENTITIES = {}
 
-local vertices = {}
-for k, brush in pairs(brushes) do
-	if brush.solid then
-		local ent = ents.Create("func_brush")
-		ent:SetModel("models/props_junk/PopCan01a.mdl")
-		ent:SetColor(Color(0, 0, 0, 0))
-		ent:SetRenderMode(RENDERMODE_TRANSALPHA)
-		ent:SetPos(brush.min)
-		ent:Spawn()
-		ent:PhysicsInitBox(Vector(), brush.max - brush.min)
-		ent:SetCollisionBounds(Vector(), brush.max - brush.min)
-		ent:SetMoveType(MOVETYPE_NONE)
-		ent:SetOwner(Entity(0))
-		
-		local phys = ent:GetPhysicsObject()
-		phys:EnableMotion(false)
-		
-		CUSTOM_BRUSHES_ENTITIES[ent] = true
-	end
-end
+hook.Add("Initialize", "sbv_custombrushes", function()
+	timer.Simple(5, function()
+		for k, brush in pairs(brushes) do
+			if brush.solid then
+				local ent = ents.Create("func_brush")
+				ent:SetModel("models/props_junk/PopCan01a.mdl")
+				ent:SetColor(Color(0, 0, 0, 0))
+				ent:SetRenderMode(RENDERMODE_TRANSALPHA)
+				ent:SetPos(brush.min)
+				ent:Spawn()
+				ent:PhysicsInitBox(Vector(), brush.max - brush.min)
+				ent:SetCollisionBounds(Vector(), brush.max - brush.min)
+				ent:SetMoveType(MOVETYPE_NONE)
+				ent:SetOwner(Entity(0))
+				
+				local phys = ent:GetPhysicsObject()
+				phys:EnableMotion(false)
+				
+				CUSTOM_BRUSHES_ENTITIES[ent] = true
+			end
+		end
+	end)
+end)
 
 if brushes then
 	hook.Add("PhysgunPickup", "sbv_custombrushes", function(ply, ent)

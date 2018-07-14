@@ -28,7 +28,7 @@ else
 		local ply = net.ReadEntity()
 		
 		if ply then
-			chat.AddText(ply, Color(255, 255, 255), " ["..ply:SteamID().."]", Color(100, 100, 255), " Has joined.")
+			chat.AddText(ply, Color(255, 255, 255), " [" .. ply:SteamID() .. "]", Color(100, 100, 255), " Has joined.")
 		end
 	end)
 	
@@ -37,6 +37,6 @@ else
 		local name = net.ReadString()
 		local steamid = net.ReadString()
 		
-		chat.AddText(color, name, Color(255, 255, 255), " ["..steamid.."]", Color(100, 100, 255), " Has left.")
+		chat.AddText(color, name, Color(255, 255, 255), " [" .. steamid .. "]", Color(100, 100, 255), " Has left.")
 	end)
 end
