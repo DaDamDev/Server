@@ -11,13 +11,13 @@ function ulx.setspawn(caller, ply)
 		ang = ply:GetAngles()
 	}
 	
-	ulx.fancyLogAdmin(caller, "#A has set the spawn of #T!", plys)
+	ulx.fancyLogAdmin(caller, "#A has set the spawn of #T!", ply)
 end
 
 function ulx.resetspawn(caller, ply)
 	ply.customspawn = nil
 	
-	ulx.fancyLogAdmin(caller, "#A has reset the spawn of #T!", plys)
+	ulx.fancyLogAdmin(caller, "#A has reset the spawn of #T!", ply)
 end
 
 local cmd = ulx.command("Fun", "ulx setspawn", ulx.setspawn, "!setspawn", true)

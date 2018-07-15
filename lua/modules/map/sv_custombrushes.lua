@@ -31,22 +31,28 @@ local brushes = {
 			min = Vector(1220, 8324, 64),
 			max = Vector(2116, 9284, 448),
 			trigger = adminOnly
-		}, pvp_arena1_team1 = {
+		},
+		
+		--PVP Arena 1
+		pvp_arena1_team1_teleporter = {
 			solid = true,
 			min = Vector(7064, 8640, 64),
 			max = Vector(7128, 8720, 192)
-		}, pvp_arena1_team2 = {
+		}, pvp_arena1_team2_teleporter = {
 			solid = true,
 			min = Vector(8424, 8640, 64),
 			max = Vector(8488, 8720, 192)
-		}, pvp_arena2_team1 = {
+		},
+		
+		--PVP Arena 2
+		pvp_arena2_team1_teleporter = {
 			solid = true,
 			min = Vector(-14128, 3056, 224),
-			max = Vector(-14096, 3088, 344)
-		}, pvp_arena2_team2 = {
+			max = Vector(-14092, 3092, 352)
+		}, pvp_arena2_team2_teleporter = {
 			solid = true,
-			min = Vector(-10096, 7088, 48),
-			max = Vector(-10064, 7120, 168)
+			min = Vector(-10100, 7084, 48),
+			max = Vector(-10064, 7120, 172)
 		}
 	}
 }
@@ -79,10 +85,9 @@ hook.Add("Initialize", "sbv_custombrushes", function()
 	timer.Simple(5, function()
 		for k, brush in pairs(brushes) do
 			if brush.solid then
-				local ent = ents.Create("func_brush")
-				ent:SetModel("models/props_junk/PopCan01a.mdl")
-				ent:SetColor(Color(0, 0, 0, 0))
-				ent:SetRenderMode(RENDERMODE_TRANSALPHA)
+				local ent = ents.Create("prop_physics")
+				ent:SetModel("models/hunter/blocks/cube025x025x025.mdl")
+				ent:SetRenderMode(RENDERMODE_ENVIROMENTAL)
 				ent:SetPos(brush.min)
 				ent:Spawn()
 				ent:PhysicsInitBox(Vector(), brush.max - brush.min)
