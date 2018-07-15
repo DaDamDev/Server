@@ -47,7 +47,7 @@ local spawnpoints = {
 
 
 hook.Add("PlayerSpawn", "sbv_MapSpawn", function(ply)
-	if not ply.customspawn then
+	if not ply.customspawn and not ply:InPVP() then
 		ply:SetPos(spawnpoints[math.random(#spawnpoints)])
 	end
 end)
