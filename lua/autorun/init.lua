@@ -1,3 +1,5 @@
+resource.AddFile("materials/hud/bullet2.png")
+
 ----- Module Loader -----
 local base = "modules/"
 local _, folders = file.Find(base .. "*", "LUA")
