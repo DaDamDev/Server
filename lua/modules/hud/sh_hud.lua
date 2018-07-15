@@ -609,7 +609,7 @@ ammoHUD:SetTextSize(24)
 ammoHUD:AutoMax(true)
 ammoHUD:SetGap(10)
 ammoHUD:MapToScreen(1920, 1080, ScrW(), ScrH())
-]]
+--]]
 
 
 --[[###################################################################################----
