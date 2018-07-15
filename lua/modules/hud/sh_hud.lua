@@ -451,7 +451,7 @@ local function createHUDMagazine(x, y, w, h)
 	self.bullets = true
 	self.bulletSize = 16
 	self.bulletgap = 4
-	self.bulletPath = "materials/hud/bullet2.png"
+	self.bulletPath = "garrysmod/materials/hud/bullet2.png"
 	self.bulletMat = Material(self.bulletPath)
 	self.bulletAng = 90
 	self.bulletOffsets = {
