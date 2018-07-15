@@ -1,10 +1,12 @@
 function ulx.revive(caller, plys)
 	for k, ply in pairs(plys) do
-		local pos = ply:GetPos()
-		
-		if not ply:Alive() then
-			ply:Spawn()
-			ply:SetPos(pos)
+		if not ply:InPVP() then
+			local pos = ply:GetPos()
+			
+			if not ply:Alive() then
+				ply:Spawn()
+				ply:SetPos(pos)
+			end
 		end
 	end
 	

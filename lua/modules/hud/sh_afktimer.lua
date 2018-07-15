@@ -49,6 +49,8 @@ else
 	hook.Add("HUDPaint", "sbv_afktimer", function()
 		local lpp = LocalPlayer():GetPos()
 		
+		if LocalPlayer():InPVP() then return end
+		
 		if table.Count(time) > 0 then
 			for ply, t in pairs(time) do
 				if table.HasValue(player.GetAll(), ply) then

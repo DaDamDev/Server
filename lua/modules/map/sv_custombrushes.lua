@@ -9,7 +9,18 @@ end
 
 local brushes = {
 	gm_cloudbuild = {
-		teleporter_room = {
+		teleporter_room_doorway = {
+			min = Vector(4048, 2016, 272),
+			max = Vector(4144, 2048, 384),
+			trigger = function(ply)
+				if not ply:IsPlayer() then return end
+				
+				ply:SetPos(Vector(4096, 1920, 272))
+				ply:SetPVP(true)
+				
+				return true
+			end
+		}, teleporter_room = {
 			min = Vector(3760, 2048, 272),
 			max = Vector(4432, 2560, 432),
 			trigger = adminOnly

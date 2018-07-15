@@ -1,5 +1,5 @@
 hook.Add("PlayerSpawn", "sbv_customspawn", function(ply)
-	if ply.customspawn then
+	if ply.customspawn and not ply:InPVP() then
 		ply:SetPos(ply.customspawn.pos)
 		ply:SetAngles(ply.customspawn.ang)
 	end
