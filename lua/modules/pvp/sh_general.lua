@@ -243,6 +243,8 @@ if SERVER then
 	hook.Add("PlayerSpawnVehicle", "sbv_pvp_disallow", disallow)
 	hook.Add("PlayerGiveSWEP", "sbv_pvp_disallow", disallow)
 	hook.Add("PlayerNoClip", "sbv_pvp_disallow", disallow)
+	hook.Add("PlayerCanPickupItem", "sbv_pvp_disallow", disallow)
+	hook.Add("PlayerCanPickupWeapon", "sbv_pvp_disallow", disallow)
 	
 	-- Mode hooks
 	local function setupModeHook(hookName)

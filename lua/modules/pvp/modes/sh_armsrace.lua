@@ -89,6 +89,8 @@ if SERVER then
 						rank = 1
 					}
 				end
+				
+				pvp.SetTimerTime(-1) -- Disable timer
 			end,
 			PVPPlayerJoin = function(ply)
 				playerRanking[ply] = {
