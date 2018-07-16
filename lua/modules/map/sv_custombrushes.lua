@@ -117,7 +117,7 @@ end)
 
 if brushes then
 	hook.Add("PhysgunPickup", "sbv_custombrushes", function(ply, ent)
-		if CUSTOM_BRUSHES_ENTITIES[ent] then return false end
+		if ent:CPPIGetOwner() == Entity(0) then return false end -- Disallow pickup of any world entities
 	end)
 	
 	hook.Add("FinishMove", "sbv_custombrushes", function(ply, data)

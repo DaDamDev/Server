@@ -40,6 +40,10 @@ else
 	
 	local time = -1
 	
+	function pvp.DisableTimer()
+		time = -1
+	end
+	
 	surface.CreateFont("sbv_pvp_timer", {
 		font = "Roboto",
 		size = 20,

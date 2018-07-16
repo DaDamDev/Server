@@ -110,6 +110,7 @@ else
 	hook.Add("PVPModeStarted", "sbv_pvp_loadoutmenu", function(mode)
 		if frame then
 			frame:Remove()
+			frame = nil
 		end
 	end)
 	

@@ -29,6 +29,8 @@ if SERVER then
 			hook.Run("PVPPlayerJoin", self)
 		else
 			hook.Run("PVPPlayerLeave", self)
+			
+			self:UnLock()
 		end
 	end
 	
@@ -200,7 +202,13 @@ if SERVER then
 	end
 	
 	function pvp.StartRandomMode()
-		pvp.StartMode(table.GetKeys(pvp.modes)[math.random(1, table.Count(pvp.modes))])
+		local mode
+		
+		while mode ~= pvp.currentModeName do
+			mode = table.GetKeys(pvp.modes)[math.random(1, table.Count(pvp.modes))]
+		end
+		
+		pvp.StartMode(mode)
 	end
 	
 	function pvp.EndGame()
@@ -308,6 +316,7 @@ else
 		
 		hook.Run("PVPModeStarted", mode)
 		
+		pvp.DisableTimer()
 		LocalPlayer():PVPNotification(pvp.currentMode.name .. " has started!")
 	end)
 	
