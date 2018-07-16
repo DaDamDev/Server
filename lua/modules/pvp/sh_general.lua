@@ -233,6 +233,11 @@ if SERVER then
 		pvp.StartRandomMode()
 	end)
 	
+	-- Disable ulx cmds when in pvp unless player is admin or superadmin
+	hook.Add("ULibCommandCalled", "sbv_pvp", function(ply)
+		if ply:InPVP() and (not ply:IsAdmin() and not ply:IsSuperAdmin()) then return false end
+	end)
+	
 	--------------------
 	
 	-- Disallow the spawning of anything while in pvp

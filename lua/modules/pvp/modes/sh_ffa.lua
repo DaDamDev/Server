@@ -48,6 +48,9 @@ if SERVER then
 					scores[attacker] = scores[attacker] + 1
 				end
 			end,
+			PlayerSpawn = function(ply)
+				ply:PVPNotification("Select your loadout by holding Q!")
+			end,
 			PlayerLoadout = function(ply)
 				local loadout = ply:GetPVPLoadout()
 				
