@@ -32,7 +32,7 @@ if SERVER then
 	end
 
 	hook.Add("PlayerInitialSpawn", "sbv_faketeam", function(ply)
-		local faketeam = ply:GetPData("faketeam")
+		local faketeam = tonumber(ply:GetPData("faketeam"))
 
 		if faketeam then
 			ply:SetFakeTeam(faketeam)
