@@ -204,7 +204,7 @@ if SERVER then
 	function pvp.StartRandomMode()
 		local mode
 		
-		while mode ~= pvp.currentModeName do
+		while mode == pvp.currentModeName do
 			mode = table.GetKeys(pvp.modes)[math.random(1, table.Count(pvp.modes))]
 		end
 		
@@ -233,9 +233,9 @@ if SERVER then
 		pvp.StartRandomMode()
 	end)
 	
-	-- Disable ulx cmds when in pvp unless player is admin or superadmin
+	-- Disable ulx cmds when in pvp unless player is admin or superadmin, uses :GetNWBool("inpvp", false) instead of :InPVP() cuz that fucks everything up?!
 	hook.Add("ULibCommandCalled", "sbv_pvp", function(ply)
-		if ply:InPVP() and (not ply:IsAdmin() and not ply:IsSuperAdmin()) then return false end
+		if ply:GetNWBool("inpvp", false) and not ply:IsAdmin() and not ply:IsSuperAdmin() then return false end
 	end)
 	
 	--------------------
@@ -301,7 +301,7 @@ if SERVER then
 		end
 		
 		if not pvp.currentMode.hooks.PlayerSpawn then return end
-		return pvp.currentMode.hooks[hookName](ply)
+		return pvp.currentMode.hooks.PlayerSpawn(ply)
 	end)
 	
 	setupModeHookPlayer("PlayerLoadout")
