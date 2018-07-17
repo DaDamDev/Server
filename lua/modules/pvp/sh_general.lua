@@ -202,10 +202,15 @@ if SERVER then
 	end
 	
 	function pvp.StartRandomMode()
-		local mode
+		local mode = pvp.currentModeName
+		local modesCount = table.Count(pvp.modes)
+		
+		if modesCount < 2 then
+			return print("No new mode started, amount of modes is " .. modesCount)
+		end
 		
 		while mode == pvp.currentModeName do
-			mode = table.GetKeys(pvp.modes)[math.random(1, table.Count(pvp.modes))]
+			mode = table.GetKeys(pvp.modes)[math.random(1, modesCount)]
 		end
 		
 		pvp.StartMode(mode)
@@ -257,7 +262,7 @@ if SERVER then
 	hook.Add("PlayerGiveSWEP", "sbv_pvp_disallow", disallow)
 	hook.Add("PlayerNoClip", "sbv_pvp_disallow", disallow)
 	hook.Add("PlayerCanPickupItem", "sbv_pvp_disallow", disallow)
-	hook.Add("PlayerCanPickupWeapon", "sbv_pvp_disallow", disallow)
+	--hook.Add("PlayerCanPickupWeapon", "sbv_pvp_disallow", disallow) -- Dis somehow blocks PLAYER:Give()
 	
 	-- Mode hooks
 	local function setupModeHook(hookName)
