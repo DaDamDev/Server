@@ -1,3 +1,9 @@
+if SERVER then
+	-- // Mats //
+	resource.AddFile("garrysmod/materials/hud/bullet2.png")
+end
+
+if CLIENT then
 --[[###################################################################################----
 								Vars n Stuff
 ----###################################################################################]]--
@@ -570,7 +576,6 @@ local hpHUDcol = hpHUD:Colors()
 hpHUD:SetMaxValue(100)
 hpHUD:SetThickness(1)
 hpHUD:SetTextSize(24)
-hpHUD:AutoMax(true)
 hpHUD:SetGap(10)
 hpHUD:MapToScreen(1920, 1080, ScrW(), ScrH())
 
@@ -653,6 +658,7 @@ hook.Add("HUDPaint", "Render_HUD_Shine", function()
 	-- // Values //
 	local hp = math.max(me:Health(), 0)
 	hpHUD:SetValue(hp)
+	hpHUD:SetMaxValue(me:GetMaxHealth())
 
 	local suit = me:Armor()
 	armorHUD:SetValue(suit)
@@ -735,3 +741,5 @@ local hudHide = {
 hook.Add("HUDShouldDraw", "ShineHUD", function(name)
 	if hudHide[name] then return false end
 end)
+
+end
