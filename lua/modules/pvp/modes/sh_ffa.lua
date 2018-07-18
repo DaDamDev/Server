@@ -30,8 +30,10 @@ if SERVER then
 				
 				pvp.EndGame()
 				
-				for k, ply in pairs(player.GetPVP()) do
-					ply:PVPNotification(ply:GetName() .. " has won!")
+				if p then
+					for k, ply in pairs(player.GetPVP()) do
+						p:PVPNotification(ply:GetName() .. " has won!")
+					end
 				end
 			end,
 			PVPPlayerJoin = function(ply)
