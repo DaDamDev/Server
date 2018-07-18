@@ -1,9 +1,11 @@
-hook.Add("PlayerSpawn", "sbv_customspawn", function(ply)
-	if ply.customspawn and not ply:InPVP() then
-		ply:SetPos(ply.customspawn.pos)
-		ply:SetAngles(ply.customspawn.ang)
-	end
-end)
+if SERVER then
+	hook.Add("PlayerSpawn", "sbv_customspawn", function(ply)
+		if ply.customspawn and not ply:InPVP() then
+			ply:SetPos(ply.customspawn.pos)
+			ply:SetAngles(ply.customspawn.ang)
+		end
+	end)
+end
 
 function ulx.setspawn(caller, ply)
 	ply.customspawn = {
