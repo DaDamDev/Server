@@ -1,3 +1,3 @@
 if SERVER then
-	resource.AddFile("materials/hud/bullet2.png")
+	--resource.AddFile("materials/hud/bullet2.png")
 end
