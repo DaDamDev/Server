@@ -1,9 +1,3 @@
-if SERVER then
-	-- // Mats //
-	resource.AddFile("materials/hud/bullet2.png")
-end
-
-if CLIENT then
 --[[###################################################################################----
 								Vars n Stuff
 ----###################################################################################]]--
@@ -26,7 +20,7 @@ local ShineFontSettings = {
 	outline = false,
 }
 surface.CreateFont("ShineFont", ShineFontSettings)
-	
+
 local Mats = {}
 
 
@@ -76,7 +70,7 @@ Mats.blur = Material("pp/blurscreen")
 local function DrawBlurRect(x, y, w, h, amt)
 
 	-- // Gets and Sets the Material /////////////
-	
+
 	surface.SetMaterial(Mats.blur)
 	surface.SetDrawColor(255, 255, 255, 255)
 	-- ///////////////////////////////////////////
@@ -194,6 +188,13 @@ HUDState.__index = HUDState
 HUDMagazine = {}
 HUDMagazine.__index = HUDMagazine
 
+local function mapRes(tbl, x, y, w, h)
+	x = math.Remap(tbl.scrW, 0, tbl.resW, 0, x or 0)
+	y = math.Remap(tbl.scrH, 0, tbl.resH, 0, y or 0)
+	w = math.Remap(tbl.scrW, 0, tbl.resW, 0, w or 0)
+	h = math.Remap(tbl.scrH, 0, tbl.resH, 0, h or 0)
+	return x, y, w, h
+end
 
 -- //  Body  //////////////////////////
 function HUDState:SetPos(x, y) self.x = x; self.y = y end
@@ -252,6 +253,7 @@ function HUDState:GetW() return self.w end
 function HUDState:GetH() return self.h end
 function HUDState:GetGap() return self.gap end
 function HUDState:GetBlur() return self.blur end
+function HUDState:GetVisible() return self.visible end
 
 
 function HUDState:GetThickness() return self.thickness end
@@ -418,6 +420,9 @@ local function createHUDState(x, y, w, h)
 end
 
 
+--[[
+
+Rip
 
 local function createHUDMagazine(x, y, w, h)
 	local self = setmetatable({}, HUDState)
@@ -544,7 +549,7 @@ local function createHUDMagazine(x, y, w, h)
 	return self
 end
 
-
+--]]
 
 local function drawElements()
 	for k, v in pairs(Elements) do
@@ -559,14 +564,12 @@ end
 								Setup
 ----###################################################################################]]--
 
-
 -- // Health //
 local hpHUD = createHUDState(10, 1080 - 40, 256, 30)
 local hpHUDcol = hpHUD:Colors()
 hpHUD:SetMaxValue(100)
 hpHUD:SetThickness(1)
 hpHUD:SetTextSize(24)
-hpHUD:AutoMax(true)
 hpHUD:SetGap(10)
 hpHUD:MapToScreen(1920, 1080, ScrW(), ScrH())
 
@@ -598,17 +601,39 @@ armorHUDcol.gain = Col(255, 84, 253, 200)
 armorHUDcol.background = Col(0, 100)
 
 
---
+
 -- // Ammo //
 local w, h = 256, 70
-local ammoHUD = createHUDMagazine(1920 - w - 10, 1080 - h - 10, w, h)
+local ammoHUD = createHUDState(10, 1080 - 110, 256, 30)
 local ammoHUDcol= ammoHUD:Colors()
-ammoHUD:SetMaxValue(100)
 ammoHUD:SetThickness(1)
 ammoHUD:SetTextSize(24)
-ammoHUD:AutoMax(true)
 ammoHUD:SetGap(10)
 ammoHUD:MapToScreen(1920, 1080, ScrW(), ScrH())
+
+ammoHUDcol.lose = Col(0, 0)
+ammoHUDcol.gain = Col(0, 0)
+ammoHUDcol.bar = Col(255, 161, 61)
+ammoHUDcol.text = ammoHUDcol.bar
+ammoHUDcol.outline = colSetA(ammoHUDcol.bar, 35)
+ammoHUDcol.background = Col(0, 100)
+
+
+local w, h = 256, 70
+local special = createHUDState(10, 1080 - 110, 30, 30)
+local specialcol = special:Colors()
+special:SetThickness(1)
+special:SetTextSize(24)
+special:SetGap(10)
+special:ShowBar(false)
+special:MapToScreen(1920, 1080, ScrW(), ScrH())
+
+specialcol.lose = Col(0, 0)
+specialcol.gain = Col(0, 0)
+specialcol.bar = Col(255, 161, 61)
+specialcol.text = specialcol.bar
+specialcol.outline = colSetA(specialcol.bar, 35)
+specialcol.background = Col(0, 100)
 --]]
 
 
@@ -627,6 +652,7 @@ hook.Add("HUDPaint", "Render_HUD_Shine", function()
 	-- // Values //
 	local hp = math.max(me:Health(), 0)
 	hpHUD:SetValue(hp)
+	hpHUD:SetMaxValue(me:GetMaxHealth())
 
 	local suit = me:Armor()
 	armorHUD:SetValue(suit)
@@ -666,20 +692,33 @@ hook.Add("HUDPaint", "Render_HUD_Shine", function()
 
 	armorHUD:SetVisible(armorHUD:GetValue() > 0 and not god)
 	armorHUD:ShowBar(armorHUD:GetValue() > 0 and not god)
-	
-	ammoHUD.t1 = 0
+
+	ammoHUD:SetPos(armorHUD:GetX(), armorHUD:GetY() - (armorHUD:GetH() + 5) * (armorHUD:GetVisible() and 1 or 0))
+
+	ammoHUD:SetVisible(false)
+	ammoHUD:ShowBar(false)
 	if me:GetActiveWeapon():IsValid() then
 		local weapon = me:GetActiveWeapon()
-		ammoHUD.val1 = weapon:Clip1() -- Current Clip
-		ammoHUD.val3 = weapon:GetMaxClip1() -- Max Clip Size
-		ammoHUD.val2 = me:GetAmmoCount(weapon:GetPrimaryAmmoType()) -- Total Ammo
-		ammoHUD.val4 = me:GetAmmoCount(weapon:GetSecondaryAmmoType()) -- 2nd Ammo Type
-		
-		if ammoHUD.val1 > 0 then
-			ammoHUD.t1 = 1
-		end
-	end
+		local clip = weapon:Clip1() -- Current Clip
+		local maxClip = weapon:GetMaxClip1() -- Max Clip Size
+		local ammoAmt = me:GetAmmoCount(weapon:GetPrimaryAmmoType()) -- Total Ammo
+		local ammo2 = me:GetAmmoCount(weapon:GetSecondaryAmmoType()) -- 2nd Ammo Type
 
+		if clip != -1 then
+			ammoHUD:SetValue(clip)
+			ammoHUD:SetMaxValue(maxClip)
+			ammoHUD:SetSuffix(" / ".. ammoAmt)
+		end
+
+		ammoHUD:SetVisible(clip != -1)
+		ammoHUD:ShowBar(clip != -1)
+
+		special:SetValue(ammo2)
+		special:SetVisible(ammo2 != 0)
+
+		ammoHUD:SetSize(256 - special.lerpw * (ammo2 != 0 and 1 or 0), ammoHUD:GetH())
+		special:SetPos(ammoHUD:GetX() + ammoHUD.lerpw, ammoHUD:GetY())
+	end
 
 
 	drawElements()
@@ -689,11 +728,10 @@ end)
 local hudHide = {
 	["CHudHealth"] = true,
 	["CHudBattery"] = true,
-	["CHudAmmo"] = true
+	["CHudAmmo"] = true,
+	["CHudSecondaryAmmo"] = true,
 }
 
 hook.Add("HUDShouldDraw", "ShineHUD", function(name)
 	if hudHide[name] then return false end
 end)
-
-end
