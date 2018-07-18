@@ -1,9 +1,3 @@
-if SERVER then
-	-- // Mats //
-	resource.AddFile("garrysmod/materials/hud/bullet2.png")
-end
-
-if CLIENT then
 --[[###################################################################################----
 								Vars n Stuff
 ----###################################################################################]]--
@@ -741,5 +735,3 @@ local hudHide = {
 hook.Add("HUDShouldDraw", "ShineHUD", function(name)
 	if hudHide[name] then return false end
 end)
-
-end
