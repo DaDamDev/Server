@@ -53,7 +53,7 @@ cmd:defaultAccess(ULib.ACCESS_ALL)
 cmd:help("Shows your current title.")
 
 local cmd = ulx.command("Fun", "ulx settitle", ulx.settitle, "!settitle")
-cmd:addParam{type = ULib.cmds.StringArg, hint = "title"}
+cmd:addParam{type = ULib.cmds.StringArg, hint = "title", ULib.cmds.takeRestOfLine}
 cmd:defaultAccess(ULib.ACCESS_ALL)
 cmd:help("Sets your title.")
 

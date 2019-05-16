@@ -124,6 +124,8 @@ if brushes then
 	
 	hook.Add("FinishMove", "sbv_custombrushes", function(ply, data)
 		local min, max = ply:WorldSpaceAABB()
+		local vel = ply:GetVelocity() * FrameTime()
+		min, max = min + vel, max + vel
 		
 		for k, brush in pairs(brushes) do
 			if brush.trigger and doAABBOverlap(min, max, brush.min, brush.max) then
