@@ -1,17 +1,29 @@
 --TODO: make this as a file in data folder and a tool to easy add new brushes
-local adminOnly = function(ply)
-	if not ply:IsSuperAdmin() then
-		ply:SetPos(Vector(4096, 1920, 272))
-		
-		return true
-	end
+local function leavePVP(ply)
+	if not ply:IsPlayer() then return end
+	
+	ply:SetPos(Vector())
+	ply:SetPVP(false)
+	ply:PVPNotification("You have left pvp.")
+	
+	return true
+end
+
+local function pvpersOnly(ply)
+	if not ply:IsPlayer() or ply:InPVP() then return end
+	
+	ply:SetPos(Vector())
+	ply:KillSilent()
+	ply:PVPNotification("Only those who are currently in pvp are allowed here.")
+	
+	return true
 end
 
 local brushes = {
 	gm_cloudbuild = {
-		teleporter_room_doorway = {
-			min = Vector(4048, 2016, 272),
-			max = Vector(4144, 2048, 384),
+		teleporters_pvp = {
+			min = Vector(4328, 2192, 272),
+			max = Vector(4392, 2392, 416),
 			trigger = function(ply)
 				if not ply:IsPlayer() then return end
 				
@@ -20,50 +32,40 @@ local brushes = {
 				
 				return true
 			end
-		}, teleporter_room = {
-			min = Vector(3760, 2048, 272),
-			max = Vector(4432, 2560, 432),
-			trigger = adminOnly
-		}, specialroom1 = {
-			min = Vector(5316, 8324, 64),
-			max = Vector(6212, 9284, 448),
-			trigger = adminOnly
-		}, specialroom2 = {
-			min = Vector(3268, 8324, 64),
-			max = Vector(4164, 9220, 448),
-			trigger = function(ply)
-				ply:SetNWBool("isminge", true)
-			end
-		}, specialroom2_teleporter = {
-			solid = true,
-			min = Vector(3652, 9220, 64),
-			max = Vector(3712, 9284, 192)
-		}, specialroom3 = {
-			min = Vector(1220, 8324, 64),
-			max = Vector(2116, 9284, 448),
-			trigger = adminOnly
 		},
 		
 		--PVP Arena 1
-		pvp_arena1_team1_teleporter = {
-			solid = true,
+		pvp_arena1 = {
+			min = Vector(7128, 8032, 64),
+			max = Vector(8424, 9312, 448),
+			trigger = pvpersOnly
+		}, pvp_arena1_team1_teleporter = {
+			--solid = true,
 			min = Vector(7064, 8640, 64),
-			max = Vector(7128, 8720, 192)
+			max = Vector(7128, 8720, 192),
+			trigger = leavePVP
 		}, pvp_arena1_team2_teleporter = {
-			solid = true,
+			--solid = true,
 			min = Vector(8424, 8640, 64),
-			max = Vector(8488, 8720, 192)
+			max = Vector(8488, 8720, 192),
+			trigger = leavePVP
 		},
 		
 		--PVP Arena 2
-		pvp_arena2_team1_teleporter = {
-			solid = true,
+		pvp_arena2 = {
+			min = Vector(-14160, 3024, 48),
+			max = Vector(-10064, 7120, 1536),
+			trigger = pvpersOnly
+		}, pvp_arena2_team1_teleporter = {
+			--solid = true,
 			min = Vector(-14128, 3056, 224),
-			max = Vector(-14092, 3092, 352)
+			max = Vector(-14092, 3092, 352),
+			trigger = leavePVP
 		}, pvp_arena2_team2_teleporter = {
-			solid = true,
+			--solid = true,
 			min = Vector(-10100, 7084, 48),
-			max = Vector(-10064, 7120, 172)
+			max = Vector(-10064, 7120, 172),
+			trigger = leavePVP
 		}
 	}
 }

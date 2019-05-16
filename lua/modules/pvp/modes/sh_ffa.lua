@@ -32,7 +32,7 @@ if SERVER then
 				
 				if p then
 					for k, ply in pairs(player.GetPVP()) do
-						p:PVPNotification(ply:GetName() .. " has won!")
+						ply:PVPNotification(p:GetName() .. " has won!")
 					end
 				end
 			end,

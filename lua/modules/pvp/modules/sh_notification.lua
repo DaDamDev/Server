@@ -86,12 +86,6 @@ else
 	end)
 	
 	hook.Add("HUDPaint", "sbv_pvp_notification", function()
-		if not LocalPlayer():InPVP() then return end
-		
-		if not pvp.currentMode then
-			setNotification("There currently is nothing going on in pvp land.")
-		end
-		
 		if notif.time <= 5 then
 			local x = ScrW() / 2
 			local y = ScrH() - 130
@@ -102,6 +96,10 @@ else
 			draw.RoundedBox(50, x - 200, y - 50, 400, 100, Color(50, 50, 50, 150 * fade))
 			draw.RoundedBox(45, x - 195, y - 45, 390, 90, Color(50, 50, 50, 150 * fade))
 			draw.DrawText(notif.text, "sbv_pvp_notification", x, y + notif.offset, Color(220, 220, 220, 255 * fade), TEXT_ALIGN_CENTER)
+		end
+		
+		if LocalPlayer():InPVP() and not pvp.currentMode then
+			setNotification("There currently is nothing going on in pvp land.")
 		end
 	end)
 	
